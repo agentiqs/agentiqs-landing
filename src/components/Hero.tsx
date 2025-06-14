@@ -41,16 +41,16 @@ const Hero = () => {
               className="bg-ai-gradient hover:opacity-90 text-white px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-glow"
             >
               <Github className="mr-2 h-5 w-5" />
-              MCP-bridge
+              mcp-iq
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button 
               size="lg"
               className="bg-ai-electric hover:bg-ai-electric/90 text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300"
-              onClick={() => window.location.href = 'mailto:sales@agentiqs.ai?subject=Hosted MCP-bridge Inquiry'}
+              onClick={() => window.location.href = 'mailto:sales@agentiqs.ai?subject=Hosted mcp-iq Inquiry'}
             >
               <Mail className="mr-2 h-5 w-5" />
-              Get hosted MCP-bridge
+              Get hosted mcp-iq
             </Button>
             <Button 
               variant="outline" 
