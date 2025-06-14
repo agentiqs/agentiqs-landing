@@ -15,7 +15,7 @@ const Footer = () => {
               Pioneering the future of AI Agent optimization with open-source tools and cutting-edge technology.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
+              <a href="https://github.com/agentiqs/mcp-kit" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
                 <Github className="h-6 w-6" />
               </a>
               <a href="#" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
@@ -34,10 +34,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Product</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">Python Library</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">Documentation</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">Examples</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">API Reference</a></li>
+              <li><a href="https://github.com/agentiqs/mcp-kit" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">Python Library</a></li>
+              <li><a href="https://github.com/agentiqs/mcp-kit" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">Documentation</a></li>
+              <li><a href="https://github.com/agentiqs/mcp-kit" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">Examples</a></li>
+              <li><a href="https://github.com/agentiqs/mcp-kit" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">API Reference</a></li>
             </ul>
           </div>
           

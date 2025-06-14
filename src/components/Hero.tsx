@@ -39,6 +39,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-ai-gradient hover:opacity-90 text-white px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-glow"
+              onClick={() => window.open('https://github.com/agentiqs/mcp-kit', '_blank')}
             >
               <Github className="mr-2 h-5 w-5" />
               mcp-kit
@@ -56,6 +57,7 @@ const Hero = () => {
               variant="outline" 
               size="lg"
               className="border-ai-electric text-ai-electric hover:bg-ai-electric hover:text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300"
+              onClick={() => window.open('https://github.com/agentiqs/mcp-kit', '_blank')}
             >
               <Code2 className="mr-2 h-5 w-5" />
               Documentation
