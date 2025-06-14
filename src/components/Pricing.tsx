@@ -32,7 +32,7 @@ const Pricing = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Check className="h-5 w-5 text-ai-electric" />
-                  <span>Full mcp-kit TypeScript SDK (coming soon)</span>
+                  <span>Full mcp-kit TypeScript SDK <span className="text-sm text-gray-600">(coming soon)</span></span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Check className="h-5 w-5 text-ai-electric" />
