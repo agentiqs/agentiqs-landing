@@ -102,10 +102,6 @@ const Benefits = () => {
                 ))}
               </Tabs>
             </div>
-            {/* Floating element */}
-            <div className="absolute -top-4 -right-4 bg-ai-gradient p-4 rounded-full shadow-lg animate-glow">
-              <Sparkles className="h-6 w-6 text-white" />
-            </div>
           </div>
         </div>
       </div>
