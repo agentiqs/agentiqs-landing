@@ -38,7 +38,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button 
               size="lg" 
-              className="bg-ai-gradient hover:opacity-90 text-white px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-glow"
+              className="bg-ai-gradient hover:opacity-90 text-white px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-3000 animate-glow"
               onClick={() => window.open('https://github.com/agentiqs/mcp-kit', '_blank')}
             >
               <Github className="mr-2 h-5 w-5" />
@@ -47,7 +47,7 @@ const Hero = () => {
             </Button>
             <Button 
               size="lg"
-              className="bg-ai-electric hover:bg-ai-electric/90 text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300"
+              className="bg-ai-electric hover:bg-ai-electric/90 text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-3000"
               onClick={() => window.location.href = 'mailto:sales@agentiqs.ai?subject=Hosted mcp-kit Inquiry'}
             >
               <Mail className="mr-2 h-5 w-5" />
@@ -56,7 +56,7 @@ const Hero = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="border-ai-electric text-ai-electric hover:bg-ai-electric hover:text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300"
+              className="border-ai-electric text-ai-electric hover:bg-ai-electric hover:text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-3000"
               onClick={() => window.open('https://github.com/agentiqs/mcp-kit', '_blank')}
             >
               <Code2 className="mr-2 h-5 w-5" />
@@ -71,6 +71,9 @@ const Hero = () => {
             </span>
             <span className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/20">
               MCP Servers
+            </span>
+            <span className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/20">
+              Mocking
             </span>
             <span className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/20">
               OAS3/REST

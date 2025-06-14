@@ -13,8 +13,6 @@ const Examples = () => {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Explore practical examples of how mcp-kit simplifies AI agent development. 
-            From basic setup to advanced testing scenarios, these code snippets demonstrate 
-            the power and flexibility of our mocking library.
           </p>
         </div>
         

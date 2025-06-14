@@ -8,8 +8,7 @@ const Benefits = () => {
     "Test AI agents without external API dependencies", 
     "Validate agent behavior in isolated environments",
     "Scale testing across multiple scenarios seamlessly",
-    "Integrate with existing Python development workflows",
-    "Access comprehensive documentation and examples"
+    "with the most popular Python Agent SDKs",
   ];
 
   return (
@@ -67,12 +66,12 @@ const Benefits = () => {
             <div className="bg-ai-blue rounded-lg shadow-2xl p-8 text-white">
               <h3 className="text-2xl font-bold mb-4">Ready to accelerate your development?</h3>
               <p className="text-ai-neon mb-6">
-                Join thousands of developers who are already using mcp-kit to streamline their AI agent workflows.
+                Join a growing number of developers who are already using mcp-kit to streamline their AI agent workflows.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="h-5 w-5 text-ai-electric" />
-                  <span>5-minute setup</span>
+                  <span>2-minute setup</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="h-5 w-5 text-ai-electric" />

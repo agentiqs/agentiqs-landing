@@ -22,12 +22,12 @@ const Features = () => {
     {
       icon: <Shield className="h-8 w-8 text-ai-electric" />,
       title: "Type Safe",
-      description: "Full TypeScript-style type hints and validation ensuring your mocked services behave predictably and catch errors early."
+      description: "Fully annotated with Python types ensuring your mocked services behave predictably and catch errors early."
     },
     {
       icon: <Cog className="h-8 w-8 text-ai-neon" />,
       title: "Highly Configurable",
-      description: "Flexible configuration options to match your specific use case, from simple mocks to complex behavioral simulations."
+      description: "Flexible YAML-based configuration to easily satisfy your specific use case, from simple mocks to complex behavioral simulations."
     },
     {
       icon: <Rocket className="h-8 w-8 text-ai-purple" />,
