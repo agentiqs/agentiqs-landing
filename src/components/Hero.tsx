@@ -48,7 +48,7 @@ const Hero = () => {
             <Button 
               size="lg"
               className="bg-ai-electric hover:bg-ai-electric/90 text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-3000"
-              onClick={() => window.location.href = 'mailto:sales@agentiqs.ai?subject=Hosted mcp-kit Inquiry'}
+              onClick={() => window.open('mailto:sales@agentiqs.ai?subject=Hosted mcp-kit Inquiry', '_blank')}
             >
               <Mail className="mr-2 h-5 w-5" />
               Get hosted mcp-kit
@@ -57,7 +57,7 @@ const Hero = () => {
               variant="outline" 
               size="lg"
               className="border-ai-electric text-ai-electric hover:bg-ai-electric hover:text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-3000"
-              onClick={() => window.open('https://github.com/agentiqs/mcp-kit', '_blank')}
+              onClick={() => window.open('https://github.com/agentiqs/mcp-kit/tree/main/docs', '_blank')}
             >
               <Code2 className="mr-2 h-5 w-5" />
               Documentation
