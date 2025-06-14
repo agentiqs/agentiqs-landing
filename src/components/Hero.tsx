@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code2, Github } from "lucide-react";
+import { ArrowRight, Code2, Github, Mail } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -43,6 +43,14 @@ const Hero = () => {
               <Github className="mr-2 h-5 w-5" />
               Explore Library
               <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button 
+              size="lg"
+              className="bg-ai-electric hover:bg-ai-electric/90 text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300"
+              onClick={() => window.location.href = 'mailto:sales@agentiqs.ai?subject=Hosted Version Inquiry'}
+            >
+              <Mail className="mr-2 h-5 w-5" />
+              Get Hosted Version
             </Button>
             <Button 
               variant="outline" 

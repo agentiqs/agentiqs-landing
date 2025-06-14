@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ArrowRight, Sparkles } from "lucide-react";
+import { CheckCircle, ArrowRight, Sparkles, Mail } from "lucide-react";
 
 const Benefits = () => {
   const benefits = [
@@ -55,11 +55,12 @@ const Benefits = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
-                variant="outline" 
                 size="lg"
-                className="border-ai-electric text-ai-electric hover:bg-ai-electric hover:text-white px-8 py-6 rounded-full font-semibold"
+                className="bg-ai-electric hover:bg-ai-electric/90 text-white px-8 py-6 rounded-full font-semibold"
+                onClick={() => window.location.href = 'mailto:sales@agentiqs.ai?subject=Hosted Version Inquiry'}
               >
-                View Examples
+                <Mail className="mr-2 h-5 w-5" />
+                Get Hosted Version
               </Button>
             </div>
           </div>
