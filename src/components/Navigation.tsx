@@ -13,7 +13,7 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
       <div className="container mx-auto px-6 py-4">
         <Tabs defaultValue="home" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto bg-gray-900/50 border border-gray-700">
+          <TabsList className="grid w-full grid-cols-4 max-w-2xl mx-auto bg-gray-900/50 border border-gray-700">
             <TabsTrigger 
               value="home" 
               onClick={() => scrollToSection('home')}
@@ -29,6 +29,13 @@ const Navigation = () => {
               className="text-sm font-medium data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300 hover:text-white transition-colors"
             >
               Features
+            </TabsTrigger>
+            <TabsTrigger 
+              value="examples" 
+              onClick={() => scrollToSection('examples')}
+              className="text-sm font-medium data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300 hover:text-white transition-colors"
+            >
+              Examples
             </TabsTrigger>
             <TabsTrigger 
               value="pricing" 

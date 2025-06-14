@@ -1,9 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CheckCircle, ArrowRight, Sparkles, Mail } from "lucide-react";
-import CodeBlock from "./CodeBlock";
-import { codeExamples } from "../utils/codeExamples";
+import { CheckCircle, ArrowRight, Mail } from "lucide-react";
 
 const Benefits = () => {
   const benefits = [
@@ -27,12 +24,8 @@ const Benefits = () => {
           {/* Left side - Content */}
           <div className="space-y-8">
             <div>
-              <div className="flex items-center mb-4">
-                <Sparkles className="h-6 w-6 text-ai-electric mr-2" />
-                <span className="text-ai-electric font-semibold">Why Choose Agentiqs.ai</span>
-              </div>
               <h2 className="text-4xl md:text-5xl font-bold text-ai-blue mb-6 leading-tight">
-                Accelerate Your AI Agent Development
+                Why Choose Agentiqs.ai
               </h2>
               <p className="text-xl text-gray-600 leading-relaxed">
                 Stop waiting for external services and start building. Our mocking library empowers developers 
@@ -69,38 +62,27 @@ const Benefits = () => {
             </div>
           </div>
           
-          {/* Right side - Tabbed code examples */}
+          {/* Right side - Visual or additional content */}
           <div className="relative">
-            <div className="bg-ai-blue rounded-lg shadow-2xl overflow-hidden">
-              <Tabs defaultValue="basic" className="w-full">
-                <div className="flex items-center justify-between px-6 pt-4 pb-2">
-                  <TabsList className="bg-ai-blue/50 border border-white/20">
-                    <TabsTrigger value="basic" className="text-white data-[state=active]:bg-ai-electric data-[state=active]:text-white">
-                      {codeExamples.basic.title}
-                    </TabsTrigger>
-                    <TabsTrigger value="advanced" className="text-white data-[state=active]:bg-ai-electric data-[state=active]:text-white">
-                      {codeExamples.advanced.title}
-                    </TabsTrigger>
-                    <TabsTrigger value="testing" className="text-white data-[state=active]:bg-ai-electric data-[state=active]:text-white">
-                      {codeExamples.testing.title}
-                    </TabsTrigger>
-                  </TabsList>
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                  </div>
+            <div className="bg-ai-blue rounded-lg shadow-2xl p-8 text-white">
+              <h3 className="text-2xl font-bold mb-4">Ready to accelerate your development?</h3>
+              <p className="text-ai-neon mb-6">
+                Join thousands of developers who are already using mcp-kit to streamline their AI agent workflows.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-ai-electric" />
+                  <span>5-minute setup</span>
                 </div>
-                
-                {Object.entries(codeExamples).map(([key, example]) => (
-                  <TabsContent key={key} value={key} className="px-6 pb-6 mt-0">
-                    <CodeBlock 
-                      code={example.code}
-                      language="python"
-                    />
-                  </TabsContent>
-                ))}
-              </Tabs>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-ai-electric" />
+                  <span>Zero configuration required</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-ai-electric" />
+                  <span>Production-ready</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
