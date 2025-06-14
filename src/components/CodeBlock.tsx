@@ -59,37 +59,43 @@ const CodeBlock = ({ code, language = 'python', filename }: CodeBlockProps) => {
           .token.prolog,
           .token.doctype,
           .token.cdata {
-            color: #808080 !important;
+            color: #6a9955 !important;
             font-style: italic !important;
           }
           .token.string {
-            color: #6aab73 !important;
+            color: #ce9178 !important;
           }
           .token.keyword {
-            color: #cc7832 !important;
-            font-weight: bold !important;
+            color: #569cd6 !important;
+            font-weight: normal !important;
           }
           .token.function {
-            color: #ffc66d !important;
+            color: #dcdcaa !important;
           }
           .token.number {
-            color: #6897bb !important;
+            color: #b5cea8 !important;
           }
           .token.operator {
-            color: #a9b7c6 !important;
+            color: #d4d4d4 !important;
           }
           .token.punctuation {
-            color: #a9b7c6 !important;
+            color: #d4d4d4 !important;
           }
           .token.builtin,
           .token.class-name {
-            color: #ffc66d !important;
+            color: #4ec9b0 !important;
           }
           .token.decorator {
-            color: #bbb529 !important;
+            color: #569cd6 !important;
+          }
+          .token.boolean {
+            color: #569cd6 !important;
+          }
+          .token.variable {
+            color: #9cdcfe !important;
           }
           code[class*="language-"] {
-            color: #a9b7c6 !important;
+            color: #d4d4d4 !important;
           }
         `
       }} />
