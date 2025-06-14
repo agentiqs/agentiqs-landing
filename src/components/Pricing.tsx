@@ -110,15 +110,39 @@ const Pricing = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Check className="h-5 w-5 text-ai-electric" />
-                  <span>Managed infrastructure</span>
+                  <span>Managed cloud infrastructure</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Check className="h-5 w-5 text-ai-electric" />
-                  <span>Premium support</span>
+                  <span>24/7 premium support & SLA</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Check className="h-5 w-5 text-ai-electric" />
-                  <span>Custom integrations</span>
+                  <span>Custom integrations & SDKs</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Check className="h-5 w-5 text-ai-electric" />
+                  <span>Advanced analytics & monitoring</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Check className="h-5 w-5 text-ai-electric" />
+                  <span>Enterprise security & compliance</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Check className="h-5 w-5 text-ai-electric" />
+                  <span>Multi-tenant isolation</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Check className="h-5 w-5 text-ai-electric" />
+                  <span>Auto-scaling & load balancing</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Check className="h-5 w-5 text-ai-electric" />
+                  <span>Private cloud deployment options</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Check className="h-5 w-5 text-ai-electric" />
+                  <span>Training & onboarding sessions</span>
                 </div>
               </div>
               <Button 
