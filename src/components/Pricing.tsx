@@ -20,8 +20,8 @@ const Pricing = () => {
           {/* Open Source */}
           <Card className="border-2 border-gray-200 hover:border-ai-electric/30 transition-colors">
             <CardHeader className="text-center pb-4">
-              <CardTitle className="text-2xl font-bold text-ai-blue">Open Source</CardTitle>
-              <CardDescription className="text-lg">Our promise: free forever. Perfect for individuals and small teams</CardDescription>
+              <CardTitle className="text-2xl font-bold text-ai-blue">Open Source: Free Forever</CardTitle>
+              <CardDescription className="text-lg">Perfect for individuals and small teams</CardDescription>
               <div className="text-4xl font-bold text-ai-electric mt-4">Free</div>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -77,7 +77,6 @@ const Pricing = () => {
                           CrewAI
                         </a>
                       </div>
-                      <div className="text-gray-500">and more...</div>
                     </div>
                   </div>
                 </div>
