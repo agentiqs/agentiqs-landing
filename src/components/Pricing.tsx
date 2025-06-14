@@ -42,17 +42,44 @@ const Pricing = () => {
                   <Check className="h-5 w-5 text-ai-electric" />
                   <span>OAS3/REST support</span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <Check className="h-5 w-5 text-ai-electric" />
-                  <span>Adapters for all major MCP & Agent SDKs: 
-                    <a href="https://github.com/modelcontextprotocol/python-sdk">MCP python SDK</a> (Server, FastMCP & ClientSession), 
-                    <a href="https://github.com/jlowin/fastmcp">FastMCP 2.0</a>,
-                    <a href="https://github.com/openai/openai-agents-python">OpenAI Agents</a>,
-                    <a href="https://github.com/langchain-ai/langgraph">LangGraph</a>,
-                    <a href="https://github.com/run-llama/llama_index">LlamaIndex</a>,
-                    <a href="https://github.com/crewAIInc/crewAI">CrewAI</a>,
-                    ...
-                  </span>
+                <div className="flex items-start space-x-3">
+                  <Check className="h-5 w-5 text-ai-electric mt-0.5 flex-shrink-0" />
+                  <div>
+                    <span className="block mb-2">Adapters for all major MCP & Agent SDKs:</span>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <div>
+                        <a href="https://github.com/modelcontextprotocol/python-sdk" target="_blank" rel="noopener noreferrer" className="text-ai-electric hover:underline">
+                          MCP python SDK
+                        </a> (Server, FastMCP & ClientSession)
+                      </div>
+                      <div>
+                        <a href="https://github.com/jlowin/fastmcp" target="_blank" rel="noopener noreferrer" className="text-ai-electric hover:underline">
+                          FastMCP 2.0
+                        </a>
+                      </div>
+                      <div>
+                        <a href="https://github.com/openai/openai-agents-python" target="_blank" rel="noopener noreferrer" className="text-ai-electric hover:underline">
+                          OpenAI Agents
+                        </a>
+                      </div>
+                      <div>
+                        <a href="https://github.com/langchain-ai/langgraph" target="_blank" rel="noopener noreferrer" className="text-ai-electric hover:underline">
+                          LangGraph
+                        </a>
+                      </div>
+                      <div>
+                        <a href="https://github.com/run-llama/llama_index" target="_blank" rel="noopener noreferrer" className="text-ai-electric hover:underline">
+                          LlamaIndex
+                        </a>
+                      </div>
+                      <div>
+                        <a href="https://github.com/crewAIInc/crewAI" target="_blank" rel="noopener noreferrer" className="text-ai-electric hover:underline">
+                          CrewAI
+                        </a>
+                      </div>
+                      <div className="text-gray-500">and more...</div>
+                    </div>
+                  </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Check className="h-5 w-5 text-ai-electric" />
