@@ -65,7 +65,7 @@ const Hero = () => {
           </div>
           
           {/* Tech badges */}
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-3 mb-16">
             <span className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/20">
               Python
             </span>
@@ -82,10 +82,10 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Scroll indicator - enhanced visibility */}
+      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-ai-electric rounded-full flex justify-center bg-black/20 backdrop-blur-sm">
-          <div className="w-1 h-3 bg-ai-electric rounded-full mt-2 animate-pulse"></div>
+        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-white/50 rounded-full mt-2"></div>
         </div>
       </div>
     </section>
