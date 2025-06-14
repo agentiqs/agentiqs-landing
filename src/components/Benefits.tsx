@@ -1,6 +1,9 @@
+
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CheckCircle, ArrowRight, Sparkles, Mail } from "lucide-react";
+import CodeBlock from "./CodeBlock";
+import { codeExamples } from "../utils/codeExamples";
 
 const Benefits = () => {
   const benefits = [
@@ -138,13 +141,13 @@ class TestWeatherAgent:
                 <div className="flex items-center justify-between px-6 pt-4 pb-2">
                   <TabsList className="bg-ai-blue/50 border border-white/20">
                     <TabsTrigger value="basic" className="text-white data-[state=active]:bg-ai-electric data-[state=active]:text-white">
-                      Basic
+                      {codeExamples.basic.title}
                     </TabsTrigger>
                     <TabsTrigger value="advanced" className="text-white data-[state=active]:bg-ai-electric data-[state=active]:text-white">
-                      Advanced
+                      {codeExamples.advanced.title}
                     </TabsTrigger>
                     <TabsTrigger value="testing" className="text-white data-[state=active]:bg-ai-electric data-[state=active]:text-white">
-                      Testing
+                      {codeExamples.testing.title}
                     </TabsTrigger>
                   </TabsList>
                   <div className="flex space-x-2">
@@ -156,12 +159,10 @@ class TestWeatherAgent:
                 
                 {Object.entries(codeExamples).map(([key, example]) => (
                   <TabsContent key={key} value={key} className="px-6 pb-6 mt-0">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-ai-neon font-mono text-sm">{example.title.toLowerCase().replace(' ', '_')}.py</span>
-                    </div>
-                    <pre className="text-gray-300 font-mono text-sm leading-relaxed overflow-x-auto">
-                      {example.code}
-                    </pre>
+                    <CodeBlock 
+                      code={example.code}
+                      language="python"
+                    />
                   </TabsContent>
                 ))}
               </Tabs>
