@@ -53,32 +53,46 @@ const CodeBlock = ({ code, language = 'python', filename }: CodeBlockProps) => {
           </code>
         </pre>
       </div>
-      <style jsx>{`
-        .token.comment,
-        .token.prolog,
-        .token.doctype,
-        .token.cdata {
-          color: #6a737d !important;
-        }
-        .token.string {
-          color: #a5d6ff !important;
-        }
-        .token.keyword {
-          color: #ff7b72 !important;
-        }
-        .token.function {
-          color: #d2a8ff !important;
-        }
-        .token.number {
-          color: #79c0ff !important;
-        }
-        .token.operator {
-          color: #ff7b72 !important;
-        }
-        .token.punctuation {
-          color: #c9d1d9 !important;
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          .token.comment,
+          .token.prolog,
+          .token.doctype,
+          .token.cdata {
+            color: #808080 !important;
+            font-style: italic !important;
+          }
+          .token.string {
+            color: #6aab73 !important;
+          }
+          .token.keyword {
+            color: #cc7832 !important;
+            font-weight: bold !important;
+          }
+          .token.function {
+            color: #ffc66d !important;
+          }
+          .token.number {
+            color: #6897bb !important;
+          }
+          .token.operator {
+            color: #a9b7c6 !important;
+          }
+          .token.punctuation {
+            color: #a9b7c6 !important;
+          }
+          .token.builtin,
+          .token.class-name {
+            color: #ffc66d !important;
+          }
+          .token.decorator {
+            color: #bbb529 !important;
+          }
+          code[class*="language-"] {
+            color: #a9b7c6 !important;
+          }
+        `
+      }} />
     </div>
   );
 };
