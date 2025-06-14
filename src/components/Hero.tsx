@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code2, Github, Mail } from "lucide-react";
 
@@ -38,7 +37,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button 
               size="lg" 
-              className="bg-ai-gradient hover:opacity-90 text-white px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-glow"
+              className="bg-ai-gradient hover:opacity-90 text-white px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-flash"
               onClick={() => window.open('https://github.com/agentiqs/mcp-kit', '_blank')}
             >
               <Github className="mr-2 h-5 w-5" />
