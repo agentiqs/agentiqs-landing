@@ -1,4 +1,3 @@
-
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
@@ -18,13 +17,7 @@ const Footer = () => {
               <a href="https://github.com/agentiqs/mcp-kit" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
                 <Github className="h-6 w-6" />
               </a>
-              {/* <a href="#" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
-                <Twitter className="h-6 w-6" />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
-                <Linkedin className="h-6 w-6" />
-              </a> */}
-              <a href="mailto:sales@agentiqs.ai" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
+              <a href="mailto:sales@agentiqs.ai" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
                 <Mail className="h-6 w-6" />
               </a>
             </div>
@@ -44,10 +37,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Company</h4>
             <ul className="space-y-2">
-              {/* <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">About</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">Blog</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">Careers</a></li> */}
-              <li><a href="mailto:sales@agentiqs.ai" className="text-gray-300 hover:text-white transition-colors duration-300">Contact</a></li>
+              <li><a href="mailto:sales@agentiqs.ai" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -58,8 +48,6 @@ const Footer = () => {
             © 2025 Agentiqs.ai. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            {/* <a href="#" className="text-gray-300 hover:text-white text-sm transition-colors duration-300">Privacy Policy</a>
-            <a href="#" className="text-gray-300 hover:text-white text-sm transition-colors duration-300">Terms of Service</a> */}
             <a href="https://github.com/agentiqs/mcp-kit/tree/main/LICENSE" className="text-gray-300 hover:text-white text-sm transition-colors duration-300">License</a>
           </div>
         </div>

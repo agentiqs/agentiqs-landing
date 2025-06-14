@@ -53,7 +53,7 @@ const Benefits = () => {
               <Button 
                 size="lg"
                 className="bg-ai-electric hover:bg-ai-electric/90 text-white px-8 py-6 rounded-full font-semibold"
-                onClick={() => window.location.href = 'mailto:sales@agentiqs.ai?subject=Hosted mcp-kit Inquiry'}
+                onClick={() => window.open('mailto:sales@agentiqs.ai?subject=Hosted mcp-kit Inquiry', '_blank', 'rel=noopener noreferrer')}
               >
                 <Mail className="mr-2 h-5 w-5" />
                 Get hosted mcp-kit

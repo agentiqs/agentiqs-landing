@@ -81,7 +81,7 @@ const Pricing = () => {
               </div>
               <Button 
                 className="w-full bg-ai-electric hover:bg-ai-electric/90 text-white mt-6"
-                onClick={() => window.location.href = 'mailto:sales@agentiqs.ai?subject=Hosted mcp-kit Inquiry'}
+                onClick={() => window.open('mailto:sales@agentiqs.ai?subject=Hosted mcp-kit Inquiry', '_blank', 'rel=noopener noreferrer')}
               >
                 <Mail className="mr-2 h-4 w-4" />
                 Contact Sales
