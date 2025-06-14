@@ -49,7 +49,7 @@ const Pricing = () => {
                     <div className="text-sm text-gray-600 space-y-1">
                       <div>
                         <a href="https://github.com/modelcontextprotocol/python-sdk" target="_blank" rel="noopener noreferrer" className="text-ai-electric hover:underline">
-                          MCP python SDK
+                          MCP Python SDK
                         </a> (Server, FastMCP & ClientSession)
                       </div>
                       <div>
