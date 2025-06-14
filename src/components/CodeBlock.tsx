@@ -35,7 +35,7 @@ const CodeBlock = ({ code, language = 'python', filename }: CodeBlockProps) => {
           <span className="text-ai-neon font-mono text-sm">{filename}</span>
         </div>
       )}
-      <div className="relative group bg-black rounded-md">
+      <div className="relative group bg-ai-blue rounded-md">
         <button
           onClick={copyToClipboard}
           className="absolute top-3 right-3 p-2 bg-white/10 hover:bg-white/20 rounded-md transition-colors opacity-0 group-hover:opacity-100 z-10"
@@ -47,8 +47,8 @@ const CodeBlock = ({ code, language = 'python', filename }: CodeBlockProps) => {
             <Copy className="h-4 w-4 text-white" />
           )}
         </button>
-        <pre className="!bg-black !p-4 !m-0 overflow-x-auto !border-0 rounded-md">
-          <code className={`language-${language} !bg-black text-sm leading-relaxed`}>
+        <pre className="!p-4 !m-0 overflow-x-auto !border-0 rounded-md" style={{ backgroundColor: '#1e1e1e' }}>
+          <code className={`language-${language} text-sm leading-relaxed`} style={{ backgroundColor: '#1e1e1e' }}>
             {code}
           </code>
         </pre>
@@ -96,6 +96,10 @@ const CodeBlock = ({ code, language = 'python', filename }: CodeBlockProps) => {
           }
           code[class*="language-"] {
             color: #d4d4d4 !important;
+            background: #1e1e1e !important;
+          }
+          pre[class*="language-"] {
+            background: #1e1e1e !important;
           }
         `
       }} />
