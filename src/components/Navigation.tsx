@@ -1,7 +1,10 @@
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState, useEffect } from "react";
 
 const Navigation = () => {
+  const [activeSection, setActiveSection] = useState("home");
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -9,10 +12,30 @@ const Navigation = () => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'features', 'examples', 'pricing'];
+      const scrollPosition = window.scrollY + 100; // Offset for better UX
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Call once to set initial state
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
       <div className="container mx-auto px-6 py-4">
-        <Tabs defaultValue="home" className="w-full">
+        <Tabs value={activeSection} className="w-full">
           <TabsList className="grid w-full grid-cols-4 max-w-2xl mx-auto bg-gray-900/50 border border-gray-700">
             <TabsTrigger 
               value="home" 
