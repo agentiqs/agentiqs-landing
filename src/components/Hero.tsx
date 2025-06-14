@@ -30,7 +30,7 @@ const Hero = () => {
           
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            We're pioneering the future of AI Agent optimization. Start with our open-source Python library 
+            We're pioneering the future of AI Agent optimization. Start with our open-source Python SDK 
             for mocking MCP servers, featuring comprehensive OAS3/REST support for seamless development.
           </p>
           
@@ -39,7 +39,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-ai-gradient hover:opacity-90 text-white px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-3000 animate-glow"
-              onClick={() => window.open('https://github.com/agentiqs/mcp-kit', '_blank')}
+              onClick={() => window.open('https://github.com/agentiqs/mcp-kit-python', '_blank')}
             >
               <Github className="mr-2 h-5 w-5" />
               mcp-kit
@@ -57,7 +57,7 @@ const Hero = () => {
               variant="outline" 
               size="lg"
               className="border-ai-electric text-ai-electric hover:bg-ai-electric hover:text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-3000"
-              onClick={() => window.open('https://github.com/agentiqs/mcp-kit/tree/main/docs', '_blank')}
+              onClick={() => window.open('https://github.com/agentiqs/mcp-kit-python/tree/main/docs', '_blank')}
             >
               <Code2 className="mr-2 h-5 w-5" />
               Documentation

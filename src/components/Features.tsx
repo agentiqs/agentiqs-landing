@@ -7,7 +7,7 @@ const Features = () => {
     {
       icon: <Server className="h-8 w-8 text-ai-electric" />,
       title: "MCP Server Mocking",
-      description: "Mock Model Context Protocol servers with ease, enabling rapid development and testing of AI agents without external dependencies."
+      description: "LLM-based mocked MCP servers, enabling rapid development and testing of AI agents without external dependencies."
     },
     {
       icon: <Code className="h-8 w-8 text-ai-neon" />,
@@ -17,7 +17,7 @@ const Features = () => {
     {
       icon: <Zap className="h-8 w-8 text-ai-purple" />,
       title: "Lightning Fast",
-      description: "Optimized Python library designed for performance, allowing you to iterate quickly on AI agent development and testing."
+      description: "Optimized Python SDK designed for performance, allowing you to iterate quickly on AI agent development and testing."
     },
     {
       icon: <Shield className="h-8 w-8 text-ai-electric" />,
@@ -50,7 +50,7 @@ const Features = () => {
             Powerful Features for AI Development
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our open-source Python library provides everything you need to mock, test, and optimize your AI agents efficiently.
+            Our open-source Python SDK provides everything you need to mock, test, and optimize your AI agents efficiently.
           </p>
         </div>
         

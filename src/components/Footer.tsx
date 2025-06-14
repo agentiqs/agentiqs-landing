@@ -14,7 +14,7 @@ const Footer = () => {
               Pioneering the future of AI Agent optimization with open-source tools.
             </p>
             <div className="flex space-x-4">
-              <a href="https://github.com/agentiqs/mcp-kit" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
+              <a href="https://github.com/agentiqs" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
                 <Github className="h-6 w-6" />
               </a>
               <a href="mailto:sales@agentiqs.ai" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
@@ -27,9 +27,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Product</h4>
             <ul className="space-y-2">
-              <li><a href="https://github.com/agentiqs/mcp-kit" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">Python Library</a></li>
-              <li><a href="https://github.com/agentiqs/mcp-kit/tree/main/docs" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">Documentation</a></li>
-              <li><a href="https://github.com/agentiqs/mcp-kit/tree/main/examples" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">Examples</a></li>
+              <li><a href="https://github.com/agentiqs/mcp-kit-python" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">Python SDK</a></li>
+              <li><a href="https://github.com/agentiqs/mcp-kit-python/tree/main/docs" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">Documentation</a></li>
+              <li><a href="https://github.com/agentiqs/mcp-kit-python/tree/main/examples" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300">Examples</a></li>
             </ul>
           </div>
           
@@ -48,7 +48,9 @@ const Footer = () => {
             © 2025 Agentiqs.ai. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="https://github.com/agentiqs/mcp-kit/tree/main/LICENSE" className="text-gray-300 hover:text-white text-sm transition-colors duration-300">License</a>
+            {/* <a href="#" className="text-gray-300 hover:text-white text-sm transition-colors duration-300">Privacy Policy</a>
+            <a href="#" className="text-gray-300 hover:text-white text-sm transition-colors duration-300">Terms of Service</a> */}
+            <a href="https://github.com/agentiqs/mcp-kit-python/tree/main/LICENSE" className="text-gray-300 hover:text-white text-sm transition-colors duration-3000">License</a>
           </div>
         </div>
       </div>

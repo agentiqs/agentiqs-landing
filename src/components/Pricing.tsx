@@ -9,7 +9,7 @@ const Pricing = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-ai-blue mb-6">
-            Simple, Transparent Pricing
+            Pricing Plans
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Get started for free with our open-source library, or upgrade to our hosted solution for enterprise features.
@@ -21,14 +21,18 @@ const Pricing = () => {
           <Card className="border-2 border-gray-200 hover:border-ai-electric/30 transition-colors">
             <CardHeader className="text-center pb-4">
               <CardTitle className="text-2xl font-bold text-ai-blue">Open Source</CardTitle>
-              <CardDescription className="text-lg">Perfect for individuals and small teams</CardDescription>
+              <CardDescription className="text-lg">Our promise: free forever. Perfect for individuals and small teams</CardDescription>
               <div className="text-4xl font-bold text-ai-electric mt-4">Free</div>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Check className="h-5 w-5 text-ai-electric" />
-                  <span>Full mcp-kit Python library</span>
+                  <span>Full mcp-kit Python SDK</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Check className="h-5 w-5 text-ai-electric" />
+                  <span>Full mcp-kit TypeScript SDK (coming soon)</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Check className="h-5 w-5 text-ai-electric" />
@@ -37,6 +41,18 @@ const Pricing = () => {
                 <div className="flex items-center space-x-3">
                   <Check className="h-5 w-5 text-ai-electric" />
                   <span>OAS3/REST support</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Check className="h-5 w-5 text-ai-electric" />
+                  <span>Adapters for all major MCP & Agent SDKs: 
+                    <a href="https://github.com/modelcontextprotocol/python-sdk">MCP python SDK</a> (Server, FastMCP & ClientSession), 
+                    <a href="https://github.com/jlowin/fastmcp">FastMCP 2.0</a>,
+                    <a href="https://github.com/openai/openai-agents-python">OpenAI Agents</a>,
+                    <a href="https://github.com/langchain-ai/langgraph">LangGraph</a>,
+                    <a href="https://github.com/run-llama/llama_index">LlamaIndex</a>,
+                    <a href="https://github.com/crewAIInc/crewAI">CrewAI</a>,
+                    ...
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Check className="h-5 w-5 text-ai-electric" />
