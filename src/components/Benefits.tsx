@@ -50,6 +50,7 @@ const Benefits = () => {
               <Button 
                 size="lg" 
                 className="bg-ai-gradient hover:opacity-90 text-white px-8 py-6 rounded-full font-semibold"
+                onClick={() => window.open('https://github.com/agentiqs/mcp-kit', '_blank')}
               >
                 Get Started Today
                 <ArrowRight className="ml-2 h-5 w-5" />
