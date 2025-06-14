@@ -17,12 +17,12 @@ const Features = () => {
     {
       icon: <Zap className="h-8 w-8 text-ai-purple" />,
       title: "Lightning Fast",
-      description: "Optimized Python SDK designed for performance, allowing you to iterate quickly on AI agent development and testing."
+      description: "Optimized SDKs designed for performance, allowing you to iterate quickly on AI agent development and testing."
     },
     {
       icon: <Shield className="h-8 w-8 text-ai-electric" />,
       title: "Type Safe",
-      description: "Fully annotated with Python types ensuring your mocked services behave predictably and catch errors early."
+      description: "Fully type-annotated, ensuring your mocked services behave predictably and catch errors early."
     },
     {
       icon: <Cog className="h-8 w-8 text-ai-neon" />,
@@ -50,7 +50,7 @@ const Features = () => {
             Powerful Features for AI Development
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our open-source Python SDK provides everything you need to mock, test, and optimize your AI agents efficiently.
+            Our open-source SDKs provide everything you need to mock, test, and optimize your AI agents efficiently.
           </p>
         </div>
         

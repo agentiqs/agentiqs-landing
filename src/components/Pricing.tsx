@@ -87,7 +87,7 @@ const Pricing = () => {
               </div>
               <Button 
                 className="w-full bg-ai-gradient hover:opacity-90 text-white mt-6"
-                onClick={() => window.open('https://github.com/agentiqs/mcp-kit', '_blank')}
+                onClick={() => window.open('https://github.com/agentiqs/mcp-kit-python', '_blank')}
               >
                 <Github className="mr-2 h-4 w-4" />
                 Get Started

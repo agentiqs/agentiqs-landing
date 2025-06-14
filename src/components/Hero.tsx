@@ -30,7 +30,7 @@ const Hero = () => {
           
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            We're pioneering the future of AI Agent optimization. Start with our open-source Python SDK 
+            We're pioneering the future of AI Agent optimization. Start with our open-source SDKs 
             for mocking MCP servers, featuring comprehensive OAS3/REST support for seamless development.
           </p>
           
@@ -66,9 +66,6 @@ const Hero = () => {
           
           {/* Tech badges */}
           <div className="flex flex-wrap justify-center gap-3 mb-16">
-            <span className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/20">
-              Python
-            </span>
             <span className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/20">
               MCP Servers
             </span>

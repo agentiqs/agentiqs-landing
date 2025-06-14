@@ -8,7 +8,7 @@ const Benefits = () => {
     "Test AI agents without external API dependencies", 
     "Validate agent behavior in isolated environments",
     "Scale testing across multiple scenarios seamlessly",
-    "With the most popular Python Agent SDKs",
+    "With the most popular Agent SDKs",
   ];
 
   return (
