@@ -19,7 +19,7 @@ const Navigation = () => {
               onClick={() => scrollToSection('home')}
               className="text-sm font-medium data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300 hover:text-white transition-colors"
             >
-              <span className="text-ai-blue font-bold">
+              <span className="text-white font-bold">
                 Agentiqs<span className="text-ai-electric">.ai</span>
               </span>
             </TabsTrigger>
