@@ -3,7 +3,6 @@ import React from 'react';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import ThemeToggle from '@/components/ThemeToggle';
 import Sidebar from './Sidebar';
 import type { DocConfig } from '@/utils/docLoader';
 
@@ -37,7 +36,6 @@ const DocumentationHeader: React.FC<DocumentationHeaderProps> = ({
           </SheetContent>
         </Sheet>
         <h1 className="font-semibold text-white dark:text-white light:text-gray-900">Documentation</h1>
-        <ThemeToggle />
       </div>
     </div>
   );
