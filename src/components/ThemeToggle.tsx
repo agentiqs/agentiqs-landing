@@ -4,22 +4,19 @@ import { Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const ThemeToggle: React.FC = () => {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => {
+    // Check localStorage first, then system preference
+    const saved = localStorage.getItem('docs-theme');
+    if (saved) {
+      return saved === 'dark';
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
 
   useEffect(() => {
-    // Check if user has a saved preference
-    const savedTheme = localStorage.getItem('docs-theme');
-    if (savedTheme) {
-      const dark = savedTheme === 'dark';
-      setIsDark(dark);
-      updateTheme(dark);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDark(prefersDark);
-      updateTheme(prefersDark);
-    }
-  }, []);
+    // Apply theme on mount and when isDark changes
+    updateTheme(isDark);
+  }, [isDark]);
 
   const updateTheme = (dark: boolean) => {
     const html = document.documentElement;
@@ -28,13 +25,15 @@ const ThemeToggle: React.FC = () => {
     } else {
       html.classList.remove('dark');
     }
+    
+    // Save to localStorage
+    localStorage.setItem('docs-theme', dark ? 'dark' : 'light');
   };
 
   const toggleTheme = () => {
     const newIsDark = !isDark;
     setIsDark(newIsDark);
-    updateTheme(newIsDark);
-    localStorage.setItem('docs-theme', newIsDark ? 'dark' : 'light');
+    console.log('Theme toggled to:', newIsDark ? 'dark' : 'light');
   };
 
   return (
