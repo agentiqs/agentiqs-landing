@@ -60,7 +60,7 @@ const Hero = () => {
               onClick={() => window.open('https://github.com/agentiqs/mcp-kit-python/tree/main/docs', '_blank')}
             >
               <Code2 className="mr-2 h-5 w-5" />
-              Docs
+              Documentation
             </Button>
           </div>
           
