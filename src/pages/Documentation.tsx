@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { ChevronLeft, ChevronRight, Menu, BookOpen, Home, ExternalLink } from 'lucide-react';
 import CodeBlock from '@/components/CodeBlock';
+import DocSearch from '@/components/DocSearch';
+import ThemeToggle from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -104,7 +106,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ toc, onItemClick }) =
 
   return (
     <div className="space-y-4">
-      <h4 className="font-semibold text-sm uppercase tracking-wide text-white">
+      <h4 className="font-semibold text-sm uppercase tracking-wide text-white dark:text-white">
         On This Page
       </h4>
       <nav className="space-y-2">
@@ -200,7 +202,7 @@ interface PageNavigationProps {
 
 const PageNavigation: React.FC<PageNavigationProps> = ({ previous, next }) => {
   return (
-    <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+    <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-700 dark:border-gray-700">
       <div className="flex-1">
         {previous && (
           <Link
@@ -323,7 +325,7 @@ const Documentation: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue flex items-center justify-center">
         <div className="text-center">
           <BookOpen className="h-12 w-12 animate-pulse mx-auto mb-6 text-ai-electric" />
           <p className="text-xl text-white font-medium">Loading documentation...</p>
@@ -334,7 +336,7 @@ const Documentation: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue flex items-center justify-center">
         <Card className="max-w-md shadow-xl border border-gray-700 bg-gray-900/80 backdrop-blur-sm">
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold mb-4 text-white">Error</h2>
@@ -354,17 +356,17 @@ const Documentation: React.FC = () => {
   const navigation = getPageNavigation(config, sectionId, pageId);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue">
+    <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue light:bg-gradient-to-br light:from-gray-50 light:via-white light:to-gray-100">
       {/* Mobile Header */}
-      <div className="lg:hidden border-b border-gray-700/50 bg-gray-900/50 backdrop-blur-md">
+      <div className="lg:hidden border-b border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 bg-gray-900/50 dark:bg-gray-900/50 light:bg-white/90 backdrop-blur-md">
         <div className="flex items-center justify-between p-4">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm" className="text-white hover:bg-gray-800">
+              <Button variant="ghost" size="sm" className="text-white dark:text-white light:text-gray-900 hover:bg-gray-800 light:hover:bg-gray-100">
                 <Menu className="h-4 w-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-80 p-0 bg-gray-900/95 border-gray-700 backdrop-blur-md">
+            <SheetContent side="left" className="w-80 p-0 bg-gray-900/95 dark:bg-gray-900/95 light:bg-white border-gray-700 dark:border-gray-700 light:border-gray-200 backdrop-blur-md">
               <Sidebar
                 config={config}
                 currentSectionId={sectionId}
@@ -373,14 +375,14 @@ const Documentation: React.FC = () => {
               />
             </SheetContent>
           </Sheet>
-          <h1 className="font-semibold text-white">Documentation</h1>
-          <div className="w-10" />
+          <h1 className="font-semibold text-white dark:text-white light:text-gray-900">Documentation</h1>
+          <ThemeToggle />
         </div>
       </div>
 
       <div className="flex">
         {/* Desktop Sidebar */}
-        <div className="hidden lg:block w-80 border-r border-gray-700/50 bg-gray-900/30 backdrop-blur-md">
+        <div className="hidden lg:block w-80 border-r border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/80 backdrop-blur-md">
           <div className="sticky top-0 h-screen">
             <Sidebar
               config={config}
@@ -396,29 +398,29 @@ const Documentation: React.FC = () => {
             <div className="p-6 lg:p-8">
               {/* Breadcrumbs */}
               {pageInfo && (
-                <div className="mb-8 p-4 bg-gray-900/30 backdrop-blur-sm rounded-lg border border-gray-700/50">
+                <div className="mb-8 p-4 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/60 backdrop-blur-sm rounded-lg border border-gray-700/50 dark:border-gray-700/50 light:border-gray-200">
                   <Breadcrumb>
                     <BreadcrumbList>
                       <BreadcrumbItem>
-                        <BreadcrumbLink href="/" className="text-gray-400 hover:text-ai-electric transition-colors">
+                        <BreadcrumbLink href="/" className="text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-ai-electric transition-colors">
                           Home
                         </BreadcrumbLink>
                       </BreadcrumbItem>
-                      <BreadcrumbSeparator className="text-gray-600" />
+                      <BreadcrumbSeparator className="text-gray-600 dark:text-gray-600 light:text-gray-400" />
                       <BreadcrumbItem>
-                        <BreadcrumbLink href="/docs" className="text-gray-400 hover:text-ai-electric transition-colors">
+                        <BreadcrumbLink href="/docs" className="text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-ai-electric transition-colors">
                           Documentation
                         </BreadcrumbLink>
                       </BreadcrumbItem>
-                      <BreadcrumbSeparator className="text-gray-600" />
+                      <BreadcrumbSeparator className="text-gray-600 dark:text-gray-600 light:text-gray-400" />
                       <BreadcrumbItem>
                         <BreadcrumbPage className="text-ai-electric font-medium">
                           {pageInfo.section.title}
                         </BreadcrumbPage>
                       </BreadcrumbItem>
-                      <BreadcrumbSeparator className="text-gray-600" />
+                      <BreadcrumbSeparator className="text-gray-600 dark:text-gray-600 light:text-gray-400" />
                       <BreadcrumbItem>
-                        <BreadcrumbPage className="text-white font-medium">
+                        <BreadcrumbPage className="text-white dark:text-white light:text-gray-900 font-medium">
                           {pageInfo.page.title}
                         </BreadcrumbPage>
                       </BreadcrumbItem>
@@ -428,8 +430,8 @@ const Documentation: React.FC = () => {
               )}
 
               {/* Content */}
-              <div className="bg-gray-900/40 rounded-xl shadow-2xl overflow-hidden border border-gray-700/50 backdrop-blur-sm">
-                <article className="prose prose-slate dark:prose-invert max-w-none p-8 lg:p-12">
+              <div className="bg-gray-900/40 dark:bg-gray-900/40 light:bg-white/80 rounded-xl shadow-2xl overflow-hidden border border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 backdrop-blur-sm">
+                <article className="prose prose-slate dark:prose-invert light:prose-gray max-w-none p-8 lg:p-12">
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
@@ -437,7 +439,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 1);
                         return (
-                          <h1 {...props} id={id} className="text-4xl md:text-5xl font-bold text-white mb-8 border-b border-gray-700/50 pb-6">
+                          <h1 {...props} id={id} className="text-4xl md:text-5xl font-bold text-white dark:text-white light:text-gray-900 mb-8 border-b border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 pb-6">
                             {children}
                           </h1>
                         );
@@ -446,7 +448,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 2);
                         return (
-                          <h2 {...props} id={id} className="text-3xl font-bold text-white mt-16 mb-6 border-l-4 border-ai-electric pl-4">
+                          <h2 {...props} id={id} className="text-3xl font-bold text-white dark:text-white light:text-gray-900 mt-16 mb-6 border-l-4 border-ai-electric pl-4">
                             {children}
                           </h2>
                         );
@@ -455,7 +457,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 3);
                         return (
-                          <h3 {...props} id={id} className="text-2xl font-semibold text-white mt-12 mb-4">
+                          <h3 {...props} id={id} className="text-2xl font-semibold text-white dark:text-white light:text-gray-900 mt-12 mb-4">
                             {children}
                           </h3>
                         );
@@ -464,7 +466,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 4);
                         return (
-                          <h4 {...props} id={id} className="text-xl font-semibold text-white mt-8 mb-3">
+                          <h4 {...props} id={id} className="text-xl font-semibold text-white dark:text-white light:text-gray-900 mt-8 mb-3">
                             {children}
                           </h4>
                         );
@@ -473,7 +475,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 5);
                         return (
-                          <h5 {...props} id={id} className="text-lg font-semibold text-white mt-6 mb-2">
+                          <h5 {...props} id={id} className="text-lg font-semibold text-white dark:text-white light:text-gray-900 mt-6 mb-2">
                             {children}
                           </h5>
                         );
@@ -482,13 +484,13 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 6);
                         return (
-                          <h6 {...props} id={id} className="text-base font-semibold text-white mt-4 mb-2">
+                          <h6 {...props} id={id} className="text-base font-semibold text-white dark:text-white light:text-gray-900 mt-4 mb-2">
                             {children}
                           </h6>
                         );
                       },
                       p: ({ children, ...props }) => (
-                        <p {...props} className="text-gray-300 leading-relaxed mb-6 text-lg">
+                        <p {...props} className="text-gray-300 dark:text-gray-300 light:text-gray-700 leading-relaxed mb-6 text-lg">
                           {children}
                         </p>
                       ),
@@ -508,31 +510,30 @@ const Documentation: React.FC = () => {
                         return (
                           <code 
                             {...props} 
-                            className="bg-gray-700 text-ai-electric px-2 py-1 rounded text-sm font-mono border border-gray-600"
+                            className="bg-gray-700 dark:bg-gray-700 light:bg-gray-100 text-ai-electric dark:text-ai-electric light:text-ai-electric px-2 py-1 rounded text-sm font-mono border border-gray-600 dark:border-gray-600 light:border-gray-300"
                           >
                             {children}
                           </code>
                         );
                       },
                       pre: ({ children, ...props }) => {
-                        // This will be handled by the code component above
                         return <>{children}</>;
                       },
                       blockquote: ({ children, ...props }) => (
                         <blockquote 
                           {...props} 
-                          className="border-l-4 border-ai-electric bg-gray-800/30 pl-6 py-4 my-6 italic text-gray-300 rounded-r-lg"
+                          className="border-l-4 border-ai-electric bg-gray-800/30 dark:bg-gray-800/30 light:bg-ai-electric/5 pl-6 py-4 my-6 italic text-gray-300 dark:text-gray-300 light:text-gray-700 rounded-r-lg"
                         >
                           {children}
                         </blockquote>
                       ),
                       ul: ({ children, ...props }) => (
-                        <ul {...props} className="list-disc pl-6 space-y-3 text-gray-300 mb-6">
+                        <ul {...props} className="list-disc pl-6 space-y-3 text-gray-300 dark:text-gray-300 light:text-gray-700 mb-6">
                           {children}
                         </ul>
                       ),
                       ol: ({ children, ...props }) => (
-                        <ol {...props} className="list-decimal pl-6 space-y-3 text-gray-300 mb-6">
+                        <ol {...props} className="list-decimal pl-6 space-y-3 text-gray-300 dark:text-gray-300 light:text-gray-700 mb-6">
                           {children}
                         </ol>
                       ),
@@ -552,14 +553,14 @@ const Documentation: React.FC = () => {
                         </a>
                       ),
                       table: ({ children, ...props }) => (
-                        <div className="overflow-x-auto my-8 rounded-lg border border-gray-700">
+                        <div className="overflow-x-auto my-8 rounded-lg border border-gray-700 dark:border-gray-700 light:border-gray-200">
                           <table {...props} className="min-w-full">
                             {children}
                           </table>
                         </div>
                       ),
                       thead: ({ children, ...props }) => (
-                        <thead {...props} className="bg-gray-800 text-white">
+                        <thead {...props} className="bg-gray-800 dark:bg-gray-800 light:bg-gray-50 text-white dark:text-white light:text-gray-900">
                           {children}
                         </thead>
                       ),
@@ -569,7 +570,7 @@ const Documentation: React.FC = () => {
                         </th>
                       ),
                       td: ({ children, ...props }) => (
-                        <td {...props} className="px-6 py-4 border-t border-gray-700 text-gray-300">
+                        <td {...props} className="px-6 py-4 border-t border-gray-700 dark:border-gray-700 light:border-gray-200 text-gray-300 dark:text-gray-300 light:text-gray-700">
                           {children}
                         </td>
                       ),
@@ -587,14 +588,36 @@ const Documentation: React.FC = () => {
             </div>
           </main>
 
-          {/* Table of Contents - Desktop */}
-          {config.theme.showTableOfContents && toc.length > 0 && (
-            <aside className="hidden xl:block w-64 border-l border-gray-700/50 bg-gray-900/30 backdrop-blur-md">
-              <div className="sticky top-0 h-screen overflow-auto p-6">
-                <TableOfContents toc={toc} />
+          {/* Right Sidebar - Search & Table of Contents */}
+          <aside className="hidden xl:block w-80 border-l border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/80 backdrop-blur-md">
+            <div className="sticky top-0 h-screen overflow-auto p-6">
+              <div className="space-y-8">
+                {/* Header with theme toggle */}
+                <div className="flex items-center justify-between">
+                  <h4 className="font-semibold text-sm uppercase tracking-wide text-white dark:text-white light:text-gray-900">
+                    Tools
+                  </h4>
+                  <ThemeToggle />
+                </div>
+
+                {/* Search */}
+                <div className="space-y-4">
+                  <h5 className="font-medium text-sm text-gray-300 dark:text-gray-300 light:text-gray-600">
+                    Search
+                  </h5>
+                  <DocSearch config={config} />
+                </div>
+
+                {/* Separator */}
+                <Separator className="bg-gray-700/50 dark:bg-gray-700/50 light:bg-gray-200" />
+
+                {/* Table of Contents */}
+                {config.theme.showTableOfContents && toc.length > 0 && (
+                  <TableOfContents toc={toc} />
+                )}
               </div>
-            </aside>
-          )}
+            </div>
+          </aside>
         </div>
       </div>
     </div>
