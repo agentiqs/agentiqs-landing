@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
 import { ChevronLeft, ChevronRight, Menu, BookOpen, Home } from 'lucide-react';
+import CodeBlock from '@/components/CodeBlock';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -22,7 +22,7 @@ import {
 } from '@/utils/docLoader';
 
 // Import highlight.js styles
-import 'highlight.js/styles/github.css';
+// import 'highlight.js/styles/github.css';
 
 interface TableOfContentsProps {
   toc: Array<{id: string; title: string; level: number}>;
@@ -103,24 +103,24 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ toc, onItemClick }) =
   };
 
   return (
-    <div className="space-y-2">
-      <h4 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">
+    <div className="space-y-4">
+      <h4 className="font-semibold text-sm uppercase tracking-wide text-ai-blue">
         On This Page
       </h4>
-      <nav className="space-y-1">
+      <nav className="space-y-2">
         {toc.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
             onClick={(e) => handleTocClick(e, item.id)}
-            className={`block text-sm transition-colors border-l-2 pl-3 py-1 ${
+            className={`block text-sm transition-colors border-l-2 pl-3 py-2 rounded-r ${
               activeId === item.id
-                ? 'border-primary text-primary font-medium'
-                : 'border-transparent hover:text-foreground hover:border-muted-foreground'
+                ? 'border-ai-electric text-ai-electric font-medium bg-ai-electric/10'
+                : 'border-transparent hover:text-ai-blue hover:border-ai-blue/30 text-gray-600'
             } ${
               item.level === 1 ? '' : 
-              item.level === 2 ? 'ml-3 text-muted-foreground' : 
-              'ml-6 text-muted-foreground'
+              item.level === 2 ? 'ml-3' : 
+              'ml-6'
             }`}
           >
             {item.title}
@@ -142,6 +142,8 @@ const Sidebar: React.FC<SidebarProps> = ({ config, currentSectionId, currentPage
   const navigate = useNavigate();
 
   const handlePageClick = (sectionId: string, pageId: string) => {
+    // Reset scroll position immediately when clicking a navigation item
+    window.scrollTo({ top: 0, behavior: 'auto' });
     navigate(`/docs/${sectionId}/${pageId}`);
     onItemClick?.();
   };
@@ -150,18 +152,18 @@ const Sidebar: React.FC<SidebarProps> = ({ config, currentSectionId, currentPage
     <ScrollArea className="h-full py-6 px-4">
       <div className="space-y-6">
         <div>
-          <Link to="/" className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-foreground">
+          <Link to="/" className="flex items-center space-x-2 text-sm text-ai-blue hover:text-ai-electric transition-colors">
             <Home className="h-4 w-4" />
             <span>Back to Home</span>
           </Link>
         </div>
         
         <div>
-          <h3 className="font-semibold text-lg mb-4">{config.title}</h3>
-          <nav className="space-y-4">
+          <h3 className="font-bold text-xl mb-6 text-ai-blue">{config.title}</h3>
+          <nav className="space-y-6">
             {config.sections.map((section, sectionIndex) => (
               <div key={section.id}>
-                <h4 className="font-medium text-sm uppercase tracking-wide text-muted-foreground mb-2">
+                <h4 className="font-semibold text-sm uppercase tracking-wide text-ai-blue mb-3 border-b border-ai-blue/20 pb-2">
                   {config.navigation.showSectionNumbers && `${sectionIndex + 1}. `}
                   {section.title}
                 </h4>
@@ -170,10 +172,10 @@ const Sidebar: React.FC<SidebarProps> = ({ config, currentSectionId, currentPage
                     <li key={page.id}>
                       <button
                         onClick={() => handlePageClick(section.id, page.id)}
-                        className={`w-full text-left text-sm px-2 py-1 rounded hover:bg-accent transition-colors ${
+                        className={`w-full text-left text-sm px-3 py-2 rounded-md hover:bg-ai-blue/10 transition-colors ${
                           currentSectionId === section.id && currentPageId === page.id
-                            ? 'bg-accent text-accent-foreground font-medium'
-                            : 'text-muted-foreground'
+                            ? 'bg-ai-electric/20 text-ai-electric font-semibold border-l-2 border-ai-electric'
+                            : 'text-gray-600 hover:text-ai-blue'
                         }`}
                       >
                         {config.navigation.showPageNumbers && `${pageIndex + 1}. `}
@@ -198,17 +200,17 @@ interface PageNavigationProps {
 
 const PageNavigation: React.FC<PageNavigationProps> = ({ previous, next }) => {
   return (
-    <div className="flex justify-between items-center mt-12 pt-8 border-t">
+    <div className="flex justify-between items-center mt-12 pt-8 border-t border-ai-blue/20">
       <div className="flex-1">
         {previous && (
           <Link
             to={`/docs/${previous.section.id}/${previous.page.id}`}
-            className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-foreground"
+            className="group flex items-center space-x-3 text-sm text-gray-600 hover:text-ai-blue transition-colors p-4 rounded-lg hover:bg-ai-blue/5"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-5 w-5 text-ai-electric" />
             <div>
-              <div className="text-xs text-muted-foreground">Previous</div>
-              <div className="group-hover:underline">{previous.page.title}</div>
+              <div className="text-xs text-ai-blue/70 uppercase tracking-wide font-medium">Previous</div>
+              <div className="group-hover:text-ai-electric font-medium transition-colors">{previous.page.title}</div>
             </div>
           </Link>
         )}
@@ -218,13 +220,13 @@ const PageNavigation: React.FC<PageNavigationProps> = ({ previous, next }) => {
         {next && (
           <Link
             to={`/docs/${next.section.id}/${next.page.id}`}
-            className="group flex items-center justify-end space-x-2 text-sm text-muted-foreground hover:text-foreground"
+            className="group flex items-center justify-end space-x-3 text-sm text-gray-600 hover:text-ai-blue transition-colors p-4 rounded-lg hover:bg-ai-blue/5"
           >
             <div>
-              <div className="text-xs text-muted-foreground">Next</div>
-              <div className="group-hover:underline">{next.page.title}</div>
+              <div className="text-xs text-ai-blue/70 uppercase tracking-wide font-medium">Next</div>
+              <div className="group-hover:text-ai-electric font-medium transition-colors">{next.page.title}</div>
             </div>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-5 w-5 text-ai-electric" />
           </Link>
         )}
       </div>
@@ -282,6 +284,9 @@ const Documentation: React.FC = () => {
       return;
     }
 
+    // Reset scroll to top when navigating to a new page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     setLoading(true);
     loadMarkdownContent(pageInfo.page.file)
       .then((markdown) => {
@@ -318,10 +323,10 @@ const Documentation: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <BookOpen className="h-8 w-8 animate-pulse mx-auto mb-4" />
-          <p>Loading documentation...</p>
+          <BookOpen className="h-12 w-12 animate-pulse mx-auto mb-6 text-ai-blue" />
+          <p className="text-xl text-ai-blue font-medium">Loading documentation...</p>
         </div>
       </div>
     );
@@ -329,13 +334,13 @@ const Documentation: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Card className="max-w-md">
-          <CardContent className="p-6 text-center">
-            <h2 className="text-xl font-semibold mb-2">Error</h2>
-            <p className="text-muted-foreground mb-4">{error}</p>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+        <Card className="max-w-md shadow-xl border border-ai-blue/10">
+          <CardContent className="p-8 text-center">
+            <h2 className="text-2xl font-bold mb-4 text-ai-blue">Error</h2>
+            <p className="text-gray-600 mb-6 leading-relaxed">{error}</p>
             <Link to="/">
-              <Button>Return Home</Button>
+              <Button className="bg-ai-electric hover:bg-ai-blue text-white font-medium px-6 py-2">Return Home</Button>
             </Link>
           </CardContent>
         </Card>
@@ -349,9 +354,9 @@ const Documentation: React.FC = () => {
   const navigation = getPageNavigation(config, sectionId, pageId);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">{/* Changed to match Examples component background */}
       {/* Mobile Header */}
-      <div className="lg:hidden border-b">
+      <div className="lg:hidden border-b border-ai-blue/10">
         <div className="flex items-center justify-between p-4">
           <Sheet>
             <SheetTrigger asChild>
@@ -368,14 +373,14 @@ const Documentation: React.FC = () => {
               />
             </SheetContent>
           </Sheet>
-          <h1 className="font-semibold">Documentation</h1>
+          <h1 className="font-semibold text-ai-blue">Documentation</h1>
           <div className="w-10" /> {/* Spacer */}
         </div>
       </div>
 
       <div className="flex">
         {/* Desktop Sidebar */}
-        <div className="hidden lg:block w-80 border-r bg-muted/10">
+        <div className="hidden lg:block w-80 border-r border-ai-blue/10 bg-white/50 backdrop-blur-sm">
           <div className="sticky top-0 h-screen">
             <Sidebar
               config={config}
@@ -391,101 +396,191 @@ const Documentation: React.FC = () => {
             <div className="p-6 lg:p-8">
               {/* Breadcrumbs */}
               {pageInfo && (
-                <Breadcrumb className="mb-6">
+                <Breadcrumb className="mb-8">
                   <BreadcrumbList>
                     <BreadcrumbItem>
-                      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                      <BreadcrumbLink href="/" className="text-ai-blue hover:text-ai-electric">Home</BreadcrumbLink>
                     </BreadcrumbItem>
-                    <BreadcrumbSeparator />
+                    <BreadcrumbSeparator className="text-ai-blue/40" />
                     <BreadcrumbItem>
-                      <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
+                      <BreadcrumbLink href="/docs" className="text-ai-blue hover:text-ai-electric">Documentation</BreadcrumbLink>
                     </BreadcrumbItem>
-                    <BreadcrumbSeparator />
+                    <BreadcrumbSeparator className="text-ai-blue/40" />
                     <BreadcrumbItem>
-                      <BreadcrumbPage>{pageInfo.section.title}</BreadcrumbPage>
+                      <BreadcrumbPage className="text-ai-blue font-medium">{pageInfo.section.title}</BreadcrumbPage>
                     </BreadcrumbItem>
-                    <BreadcrumbSeparator />
+                    <BreadcrumbSeparator className="text-ai-blue/40" />
                     <BreadcrumbItem>
-                      <BreadcrumbPage>{pageInfo.page.title}</BreadcrumbPage>
+                      <BreadcrumbPage className="text-ai-blue font-medium">{pageInfo.page.title}</BreadcrumbPage>
                     </BreadcrumbItem>
                   </BreadcrumbList>
                 </Breadcrumb>
               )}
 
               {/* Content */}
-              <article className="prose prose-slate dark:prose-invert max-w-none">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeHighlight]}
-                  components={{
-                    h1: ({ children, ...props }) => {
-                      const text = React.Children.toArray(children).join('');
-                      const id = getHeadingId(text, 1);
-                      return (
-                        <h1 {...props} id={id}>
+              <div className="bg-white rounded-lg shadow-xl overflow-hidden border border-ai-blue/10">
+                <article className="prose prose-slate dark:prose-invert max-w-none p-8">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      h1: ({ children, ...props }) => {
+                        const text = React.Children.toArray(children).join('');
+                        const id = getHeadingId(text, 1);
+                        return (
+                          <h1 {...props} id={id} className="text-4xl md:text-5xl font-bold text-ai-blue mb-6 border-b border-ai-blue/20 pb-4">
+                            {children}
+                          </h1>
+                        );
+                      },
+                      h2: ({ children, ...props }) => {
+                        const text = React.Children.toArray(children).join('');
+                        const id = getHeadingId(text, 2);
+                        return (
+                          <h2 {...props} id={id} className="text-3xl font-bold text-ai-blue mt-12 mb-6">
+                            {children}
+                          </h2>
+                        );
+                      },
+                      h3: ({ children, ...props }) => {
+                        const text = React.Children.toArray(children).join('');
+                        const id = getHeadingId(text, 3);
+                        return (
+                          <h3 {...props} id={id} className="text-2xl font-semibold text-ai-blue mt-10 mb-4">
+                            {children}
+                          </h3>
+                        );
+                      },
+                      h4: ({ children, ...props }) => {
+                        const text = React.Children.toArray(children).join('');
+                        const id = getHeadingId(text, 4);
+                        return (
+                          <h4 {...props} id={id} className="text-xl font-semibold text-ai-blue mt-8 mb-3">
+                            {children}
+                          </h4>
+                        );
+                      },
+                      h5: ({ children, ...props }) => {
+                        const text = React.Children.toArray(children).join('');
+                        const id = getHeadingId(text, 5);
+                        return (
+                          <h5 {...props} id={id} className="text-lg font-semibold text-ai-blue mt-6 mb-2">
+                            {children}
+                          </h5>
+                        );
+                      },
+                      h6: ({ children, ...props }) => {
+                        const text = React.Children.toArray(children).join('');
+                        const id = getHeadingId(text, 6);
+                        return (
+                          <h6 {...props} id={id} className="text-base font-semibold text-ai-blue mt-4 mb-2">
+                            {children}
+                          </h6>
+                        );
+                      },
+                      p: ({ children, ...props }) => (
+                        <p {...props} className="text-gray-600 leading-relaxed mb-4">
                           {children}
-                        </h1>
-                      );
-                    },
-                    h2: ({ children, ...props }) => {
-                      const text = React.Children.toArray(children).join('');
-                      const id = getHeadingId(text, 2);
-                      return (
-                        <h2 {...props} id={id}>
+                        </p>
+                      ),
+                      code: ({ node, className, children, ...props }: any) => {
+                        const match = /language-(\w+)/.exec(className || '');
+                        const language = match ? match[1] : '';
+                        const inline = !match;
+                        
+                        if (!inline && match) {
+                          return (
+                            <div className="my-6">
+                              <CodeBlock
+                                code={String(children).replace(/\n$/, '')}
+                                language={language}
+                              />
+                            </div>
+                          );
+                        }
+                        return (
+                          <code 
+                            {...props} 
+                            className="bg-ai-blue/10 text-ai-blue px-2 py-1 rounded text-sm font-mono"
+                          >
+                            {children}
+                          </code>
+                        );
+                      },
+                      pre: ({ children, ...props }) => {
+                        // This will be handled by the code component above
+                        return <>{children}</>;
+                      },
+                      blockquote: ({ children, ...props }) => (
+                        <blockquote 
+                          {...props} 
+                          className="border-l-4 border-ai-electric bg-ai-blue/5 pl-6 py-2 my-6 italic text-gray-700"
+                        >
                           {children}
-                        </h2>
-                      );
-                    },
-                    h3: ({ children, ...props }) => {
-                      const text = React.Children.toArray(children).join('');
-                      const id = getHeadingId(text, 3);
-                      return (
-                        <h3 {...props} id={id}>
+                        </blockquote>
+                      ),
+                      ul: ({ children, ...props }) => (
+                        <ul {...props} className="list-disc pl-6 space-y-2 text-gray-600 mb-4">
                           {children}
-                        </h3>
-                      );
-                    },
-                    h4: ({ children, ...props }) => {
-                      const text = React.Children.toArray(children).join('');
-                      const id = getHeadingId(text, 4);
-                      return (
-                        <h4 {...props} id={id}>
+                        </ul>
+                      ),
+                      ol: ({ children, ...props }) => (
+                        <ol {...props} className="list-decimal pl-6 space-y-2 text-gray-600 mb-4">
                           {children}
-                        </h4>
-                      );
-                    },
-                    h5: ({ children, ...props }) => {
-                      const text = React.Children.toArray(children).join('');
-                      const id = getHeadingId(text, 5);
-                      return (
-                        <h5 {...props} id={id}>
+                        </ol>
+                      ),
+                      li: ({ children, ...props }) => (
+                        <li {...props} className="leading-relaxed">
                           {children}
-                        </h5>
-                      );
-                    },
-                    h6: ({ children, ...props }) => {
-                      const text = React.Children.toArray(children).join('');
-                      const id = getHeadingId(text, 6);
-                      return (
-                        <h6 {...props} id={id}>
+                        </li>
+                      ),
+                      a: ({ children, href, ...props }) => (
+                        <a 
+                          {...props} 
+                          href={href}
+                          className="text-ai-electric hover:text-ai-blue font-medium underline decoration-ai-electric/30 hover:decoration-ai-blue/50 transition-colors"
+                        >
                           {children}
-                        </h6>
-                      );
-                    },
-                  }}
-                >
-                  {content}
-                </ReactMarkdown>
-              </article>
+                        </a>
+                      ),
+                      table: ({ children, ...props }) => (
+                        <div className="overflow-x-auto my-6">
+                          <table {...props} className="min-w-full border border-ai-blue/20 rounded-lg overflow-hidden">
+                            {children}
+                          </table>
+                        </div>
+                      ),
+                      thead: ({ children, ...props }) => (
+                        <thead {...props} className="bg-ai-blue text-white">
+                          {children}
+                        </thead>
+                      ),
+                      th: ({ children, ...props }) => (
+                        <th {...props} className="px-4 py-3 text-left font-semibold">
+                          {children}
+                        </th>
+                      ),
+                      td: ({ children, ...props }) => (
+                        <td {...props} className="px-4 py-3 border-t border-ai-blue/10">
+                          {children}
+                        </td>
+                      ),
+                    }}
+                  >
+                    {content}
+                  </ReactMarkdown>
+                </article>
+              </div>
 
               {/* Page Navigation */}
-              <PageNavigation previous={navigation.previous} next={navigation.next} />
+              <div className="mt-8">
+                <PageNavigation previous={navigation.previous} next={navigation.next} />
+              </div>
             </div>
           </main>
 
           {/* Table of Contents - Desktop */}
           {config.theme.showTableOfContents && toc.length > 0 && (
-            <aside className="hidden xl:block w-64 border-l bg-muted/10">
+            <aside className="hidden xl:block w-64 border-l border-ai-blue/10 bg-white/50 backdrop-blur-sm">
               <div className="sticky top-0 h-screen overflow-auto p-6">
                 <TableOfContents toc={toc} />
               </div>
