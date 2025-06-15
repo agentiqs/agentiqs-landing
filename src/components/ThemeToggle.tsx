@@ -14,8 +14,10 @@ const ThemeToggle: React.FC = () => {
       setIsDark(dark);
       updateTheme(dark);
     } else {
-      // Default to dark theme
-      updateTheme(true);
+      // Check system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setIsDark(prefersDark);
+      updateTheme(prefersDark);
     }
   }, []);
 
@@ -23,10 +25,8 @@ const ThemeToggle: React.FC = () => {
     const html = document.documentElement;
     if (dark) {
       html.classList.add('dark');
-      html.classList.remove('light');
     } else {
       html.classList.remove('dark');
-      html.classList.add('light');
     }
   };
 
@@ -42,7 +42,7 @@ const ThemeToggle: React.FC = () => {
       variant="ghost"
       size="sm"
       onClick={toggleTheme}
-      className="h-9 w-9 p-0 text-gray-400 hover:text-white dark:hover:text-white light:hover:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-800 light:hover:bg-gray-100"
+      className="h-9 w-9 p-0 text-gray-400 hover:text-white dark:text-gray-400 dark:hover:text-white hover:bg-gray-800 dark:hover:bg-gray-800"
       title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
       {isDark ? (
