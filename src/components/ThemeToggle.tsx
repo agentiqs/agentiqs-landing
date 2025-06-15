@@ -38,25 +38,19 @@ const ThemeToggle: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={toggleTheme}
-        className="h-9 w-9 p-0 text-gray-400 hover:text-white dark:text-gray-400 dark:hover:text-white hover:bg-gray-800 dark:hover:bg-gray-800"
-        title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-      >
-        {isDark ? (
-          <Sun className="h-4 w-4" />
-        ) : (
-          <Moon className="h-4 w-4" />
-        )}
-      </Button>
-      {/* DEBUG: Show current theme state */}
-      <span className="text-xs bg-blue-500 dark:bg-yellow-500 px-2 py-1 rounded">
-        {isDark ? 'DARK' : 'LIGHT'}
-      </span>
-    </div>
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={toggleTheme}
+      className="h-9 w-9 p-0 text-gray-400 hover:text-white dark:text-gray-400 dark:hover:text-white hover:bg-gray-800 dark:hover:bg-gray-800"
+      title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+    >
+      {isDark ? (
+        <Sun className="h-4 w-4" />
+      ) : (
+        <Moon className="h-4 w-4" />
+      )}
+    </Button>
   );
 };
 
