@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { ChevronLeft, ChevronRight, Menu, BookOpen, Home } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Menu, BookOpen, Home, ExternalLink } from 'lucide-react';
 import CodeBlock from '@/components/CodeBlock';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -324,7 +323,7 @@ const Documentation: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-ai-blue flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue flex items-center justify-center">
         <div className="text-center">
           <BookOpen className="h-12 w-12 animate-pulse mx-auto mb-6 text-ai-electric" />
           <p className="text-xl text-white font-medium">Loading documentation...</p>
@@ -335,8 +334,8 @@ const Documentation: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-ai-blue flex items-center justify-center">
-        <Card className="max-w-md shadow-xl border border-gray-700 bg-gray-800">
+      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue flex items-center justify-center">
+        <Card className="max-w-md shadow-xl border border-gray-700 bg-gray-900/80 backdrop-blur-sm">
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold mb-4 text-white">Error</h2>
             <p className="text-gray-300 mb-6 leading-relaxed">{error}</p>
@@ -355,9 +354,9 @@ const Documentation: React.FC = () => {
   const navigation = getPageNavigation(config, sectionId, pageId);
 
   return (
-    <div className="min-h-screen bg-ai-blue">
+    <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue">
       {/* Mobile Header */}
-      <div className="lg:hidden border-b border-gray-700">
+      <div className="lg:hidden border-b border-gray-700/50 bg-gray-900/50 backdrop-blur-md">
         <div className="flex items-center justify-between p-4">
           <Sheet>
             <SheetTrigger asChild>
@@ -365,7 +364,7 @@ const Documentation: React.FC = () => {
                 <Menu className="h-4 w-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-80 p-0 bg-gray-900 border-gray-700">
+            <SheetContent side="left" className="w-80 p-0 bg-gray-900/95 border-gray-700 backdrop-blur-md">
               <Sidebar
                 config={config}
                 currentSectionId={sectionId}
@@ -375,13 +374,13 @@ const Documentation: React.FC = () => {
             </SheetContent>
           </Sheet>
           <h1 className="font-semibold text-white">Documentation</h1>
-          <div className="w-10" /> {/* Spacer */}
+          <div className="w-10" />
         </div>
       </div>
 
       <div className="flex">
         {/* Desktop Sidebar */}
-        <div className="hidden lg:block w-80 border-r border-gray-700 bg-gray-900/50 backdrop-blur-sm">
+        <div className="hidden lg:block w-80 border-r border-gray-700/50 bg-gray-900/30 backdrop-blur-md">
           <div className="sticky top-0 h-screen">
             <Sidebar
               config={config}
@@ -397,30 +396,40 @@ const Documentation: React.FC = () => {
             <div className="p-6 lg:p-8">
               {/* Breadcrumbs */}
               {pageInfo && (
-                <Breadcrumb className="mb-8">
-                  <BreadcrumbList>
-                    <BreadcrumbItem>
-                      <BreadcrumbLink href="/" className="text-gray-400 hover:text-ai-electric">Home</BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator className="text-gray-600" />
-                    <BreadcrumbItem>
-                      <BreadcrumbLink href="/docs" className="text-gray-400 hover:text-ai-electric">Documentation</BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator className="text-gray-600" />
-                    <BreadcrumbItem>
-                      <BreadcrumbPage className="text-white font-medium">{pageInfo.section.title}</BreadcrumbPage>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator className="text-gray-600" />
-                    <BreadcrumbItem>
-                      <BreadcrumbPage className="text-white font-medium">{pageInfo.page.title}</BreadcrumbPage>
-                    </BreadcrumbItem>
-                  </BreadcrumbList>
-                </Breadcrumb>
+                <div className="mb-8 p-4 bg-gray-900/30 backdrop-blur-sm rounded-lg border border-gray-700/50">
+                  <Breadcrumb>
+                    <BreadcrumbList>
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href="/" className="text-gray-400 hover:text-ai-electric transition-colors">
+                          Home
+                        </BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator className="text-gray-600" />
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href="/docs" className="text-gray-400 hover:text-ai-electric transition-colors">
+                          Documentation
+                        </BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator className="text-gray-600" />
+                      <BreadcrumbItem>
+                        <BreadcrumbPage className="text-ai-electric font-medium">
+                          {pageInfo.section.title}
+                        </BreadcrumbPage>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator className="text-gray-600" />
+                      <BreadcrumbItem>
+                        <BreadcrumbPage className="text-white font-medium">
+                          {pageInfo.page.title}
+                        </BreadcrumbPage>
+                      </BreadcrumbItem>
+                    </BreadcrumbList>
+                  </Breadcrumb>
+                </div>
               )}
 
               {/* Content */}
-              <div className="bg-gray-900/50 rounded-lg shadow-xl overflow-hidden border border-gray-700 backdrop-blur-sm">
-                <article className="prose prose-slate dark:prose-invert max-w-none p-8">
+              <div className="bg-gray-900/40 rounded-xl shadow-2xl overflow-hidden border border-gray-700/50 backdrop-blur-sm">
+                <article className="prose prose-slate dark:prose-invert max-w-none p-8 lg:p-12">
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
@@ -428,7 +437,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 1);
                         return (
-                          <h1 {...props} id={id} className="text-4xl md:text-5xl font-bold text-white mb-6 border-b border-gray-700 pb-4">
+                          <h1 {...props} id={id} className="text-4xl md:text-5xl font-bold text-white mb-8 border-b border-gray-700/50 pb-6">
                             {children}
                           </h1>
                         );
@@ -437,7 +446,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 2);
                         return (
-                          <h2 {...props} id={id} className="text-3xl font-bold text-white mt-12 mb-6">
+                          <h2 {...props} id={id} className="text-3xl font-bold text-white mt-16 mb-6 border-l-4 border-ai-electric pl-4">
                             {children}
                           </h2>
                         );
@@ -446,7 +455,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 3);
                         return (
-                          <h3 {...props} id={id} className="text-2xl font-semibold text-white mt-10 mb-4">
+                          <h3 {...props} id={id} className="text-2xl font-semibold text-white mt-12 mb-4">
                             {children}
                           </h3>
                         );
@@ -479,7 +488,7 @@ const Documentation: React.FC = () => {
                         );
                       },
                       p: ({ children, ...props }) => (
-                        <p {...props} className="text-gray-300 leading-relaxed mb-4">
+                        <p {...props} className="text-gray-300 leading-relaxed mb-6 text-lg">
                           {children}
                         </p>
                       ),
@@ -490,18 +499,16 @@ const Documentation: React.FC = () => {
                         
                         if (!inline && match) {
                           return (
-                            <div className="my-6">
-                              <CodeBlock
-                                code={String(children).replace(/\n$/, '')}
-                                language={language}
-                              />
-                            </div>
+                            <CodeBlock
+                              code={String(children).replace(/\n$/, '')}
+                              language={language}
+                            />
                           );
                         }
                         return (
                           <code 
                             {...props} 
-                            className="bg-gray-800 text-ai-electric px-2 py-1 rounded text-sm font-mono"
+                            className="bg-gray-700 text-ai-electric px-2 py-1 rounded text-sm font-mono border border-gray-600"
                           >
                             {children}
                           </code>
@@ -514,23 +521,23 @@ const Documentation: React.FC = () => {
                       blockquote: ({ children, ...props }) => (
                         <blockquote 
                           {...props} 
-                          className="border-l-4 border-ai-electric bg-gray-800/50 pl-6 py-2 my-6 italic text-gray-300"
+                          className="border-l-4 border-ai-electric bg-gray-800/30 pl-6 py-4 my-6 italic text-gray-300 rounded-r-lg"
                         >
                           {children}
                         </blockquote>
                       ),
                       ul: ({ children, ...props }) => (
-                        <ul {...props} className="list-disc pl-6 space-y-2 text-gray-300 mb-4">
+                        <ul {...props} className="list-disc pl-6 space-y-3 text-gray-300 mb-6">
                           {children}
                         </ul>
                       ),
                       ol: ({ children, ...props }) => (
-                        <ol {...props} className="list-decimal pl-6 space-y-2 text-gray-300 mb-4">
+                        <ol {...props} className="list-decimal pl-6 space-y-3 text-gray-300 mb-6">
                           {children}
                         </ol>
                       ),
                       li: ({ children, ...props }) => (
-                        <li {...props} className="leading-relaxed">
+                        <li {...props} className="leading-relaxed text-lg">
                           {children}
                         </li>
                       ),
@@ -538,14 +545,15 @@ const Documentation: React.FC = () => {
                         <a 
                           {...props} 
                           href={href}
-                          className="text-ai-electric hover:text-ai-neon font-medium underline decoration-ai-electric/30 hover:decoration-ai-neon/50 transition-colors"
+                          className="text-ai-electric hover:text-ai-neon font-medium underline decoration-ai-electric/30 hover:decoration-ai-neon/50 transition-all duration-200 inline-flex items-center gap-1"
                         >
                           {children}
+                          {href?.startsWith('http') && <ExternalLink className="h-3 w-3" />}
                         </a>
                       ),
                       table: ({ children, ...props }) => (
-                        <div className="overflow-x-auto my-6">
-                          <table {...props} className="min-w-full border border-gray-700 rounded-lg overflow-hidden">
+                        <div className="overflow-x-auto my-8 rounded-lg border border-gray-700">
+                          <table {...props} className="min-w-full">
                             {children}
                           </table>
                         </div>
@@ -556,12 +564,12 @@ const Documentation: React.FC = () => {
                         </thead>
                       ),
                       th: ({ children, ...props }) => (
-                        <th {...props} className="px-4 py-3 text-left font-semibold">
+                        <th {...props} className="px-6 py-4 text-left font-semibold">
                           {children}
                         </th>
                       ),
                       td: ({ children, ...props }) => (
-                        <td {...props} className="px-4 py-3 border-t border-gray-700 text-gray-300">
+                        <td {...props} className="px-6 py-4 border-t border-gray-700 text-gray-300">
                           {children}
                         </td>
                       ),
@@ -581,7 +589,7 @@ const Documentation: React.FC = () => {
 
           {/* Table of Contents - Desktop */}
           {config.theme.showTableOfContents && toc.length > 0 && (
-            <aside className="hidden xl:block w-64 border-l border-gray-700 bg-gray-900/50 backdrop-blur-sm">
+            <aside className="hidden xl:block w-64 border-l border-gray-700/50 bg-gray-900/30 backdrop-blur-md">
               <div className="sticky top-0 h-screen overflow-auto p-6">
                 <TableOfContents toc={toc} />
               </div>

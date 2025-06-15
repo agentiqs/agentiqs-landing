@@ -29,80 +29,32 @@ const CodeBlock = ({ code, language = 'python', filename }: CodeBlockProps) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative my-6">
       {filename && (
         <div className="flex items-center justify-between mb-3">
-          <span className="text-ai-neon font-mono text-sm">{filename}</span>
+          <span className="text-ai-electric font-mono text-sm bg-gray-800/50 px-3 py-1 rounded-t-md">
+            {filename}
+          </span>
         </div>
       )}
-      <div className="relative group bg-ai-blue rounded-md">
+      <div className="relative group bg-gray-800 border border-gray-700 rounded-lg overflow-hidden shadow-lg">
         <button
           onClick={copyToClipboard}
-          className="absolute top-3 right-3 p-2 bg-white/10 hover:bg-white/20 rounded-md transition-colors opacity-0 group-hover:opacity-100 z-10"
+          className="absolute top-3 right-3 p-2 bg-gray-700 hover:bg-gray-600 rounded-md transition-all duration-200 opacity-0 group-hover:opacity-100 z-10 shadow-md"
           title="Copy to clipboard"
         >
           {copied ? (
             <Check className="h-4 w-4 text-green-400" />
           ) : (
-            <Copy className="h-4 w-4 text-white" />
+            <Copy className="h-4 w-4 text-gray-300" />
           )}
         </button>
-        <pre className="!p-4 !m-0 overflow-x-auto !border-0 rounded-md" style={{ backgroundColor: '#1e1e1e' }}>
-          <code className={`language-${language} text-sm leading-relaxed`} style={{ backgroundColor: '#1e1e1e' }}>
+        <pre className="!p-4 !m-0 overflow-x-auto !border-0 bg-gray-800" style={{ backgroundColor: '#1f2937' }}>
+          <code className={`language-${language} text-sm leading-relaxed`} style={{ backgroundColor: '#1f2937' }}>
             {code}
           </code>
         </pre>
       </div>
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          .token.comment,
-          .token.prolog,
-          .token.doctype,
-          .token.cdata {
-            color: #6a9955 !important;
-            font-style: italic !important;
-          }
-          .token.string {
-            color: #ce9178 !important;
-          }
-          .token.keyword {
-            color: #569cd6 !important;
-            font-weight: normal !important;
-          }
-          .token.function {
-            color: #dcdcaa !important;
-          }
-          .token.number {
-            color: #b5cea8 !important;
-          }
-          .token.operator {
-            color: #d4d4d4 !important;
-          }
-          .token.punctuation {
-            color: #d4d4d4 !important;
-          }
-          .token.builtin,
-          .token.class-name {
-            color: #4ec9b0 !important;
-          }
-          .token.decorator {
-            color: #569cd6 !important;
-          }
-          .token.boolean {
-            color: #569cd6 !important;
-          }
-          .token.variable {
-            color: #9cdcfe !important;
-          }
-          code[class*="language-"] {
-            color: #d4d4d4 !important;
-            background: #1e1e1e !important;
-          }
-          pre[class*="language-"] {
-            background: #1e1e1e !important;
-          }
-        `
-      }} />
     </div>
   );
 };
