@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
@@ -104,7 +105,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ toc, onItemClick }) =
 
   return (
     <div className="space-y-4">
-      <h4 className="font-semibold text-sm uppercase tracking-wide text-ai-blue">
+      <h4 className="font-semibold text-sm uppercase tracking-wide text-white">
         On This Page
       </h4>
       <nav className="space-y-2">
@@ -116,7 +117,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ toc, onItemClick }) =
             className={`block text-sm transition-colors border-l-2 pl-3 py-2 rounded-r ${
               activeId === item.id
                 ? 'border-ai-electric text-ai-electric font-medium bg-ai-electric/10'
-                : 'border-transparent hover:text-ai-blue hover:border-ai-blue/30 text-gray-600'
+                : 'border-transparent hover:text-gray-300 hover:border-gray-600 text-gray-400'
             } ${
               item.level === 1 ? '' : 
               item.level === 2 ? 'ml-3' : 
@@ -152,18 +153,18 @@ const Sidebar: React.FC<SidebarProps> = ({ config, currentSectionId, currentPage
     <ScrollArea className="h-full py-6 px-4">
       <div className="space-y-6">
         <div>
-          <Link to="/" className="flex items-center space-x-2 text-sm text-ai-blue hover:text-ai-electric transition-colors">
+          <Link to="/" className="flex items-center space-x-2 text-sm text-gray-400 hover:text-ai-electric transition-colors">
             <Home className="h-4 w-4" />
             <span>Back to Home</span>
           </Link>
         </div>
         
         <div>
-          <h3 className="font-bold text-xl mb-6 text-ai-blue">{config.title}</h3>
+          <h3 className="font-bold text-xl mb-6 text-white">{config.title}</h3>
           <nav className="space-y-6">
             {config.sections.map((section, sectionIndex) => (
               <div key={section.id}>
-                <h4 className="font-semibold text-sm uppercase tracking-wide text-ai-blue mb-3 border-b border-ai-blue/20 pb-2">
+                <h4 className="font-semibold text-sm uppercase tracking-wide text-white mb-3 border-b border-gray-700 pb-2">
                   {config.navigation.showSectionNumbers && `${sectionIndex + 1}. `}
                   {section.title}
                 </h4>
@@ -172,10 +173,10 @@ const Sidebar: React.FC<SidebarProps> = ({ config, currentSectionId, currentPage
                     <li key={page.id}>
                       <button
                         onClick={() => handlePageClick(section.id, page.id)}
-                        className={`w-full text-left text-sm px-3 py-2 rounded-md hover:bg-ai-blue/10 transition-colors ${
+                        className={`w-full text-left text-sm px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${
                           currentSectionId === section.id && currentPageId === page.id
                             ? 'bg-ai-electric/20 text-ai-electric font-semibold border-l-2 border-ai-electric'
-                            : 'text-gray-600 hover:text-ai-blue'
+                            : 'text-gray-400 hover:text-gray-200'
                         }`}
                       >
                         {config.navigation.showPageNumbers && `${pageIndex + 1}. `}
@@ -200,16 +201,16 @@ interface PageNavigationProps {
 
 const PageNavigation: React.FC<PageNavigationProps> = ({ previous, next }) => {
   return (
-    <div className="flex justify-between items-center mt-12 pt-8 border-t border-ai-blue/20">
+    <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
       <div className="flex-1">
         {previous && (
           <Link
             to={`/docs/${previous.section.id}/${previous.page.id}`}
-            className="group flex items-center space-x-3 text-sm text-gray-600 hover:text-ai-blue transition-colors p-4 rounded-lg hover:bg-ai-blue/5"
+            className="group flex items-center space-x-3 text-sm text-gray-400 hover:text-gray-200 transition-colors p-4 rounded-lg hover:bg-gray-800/50"
           >
             <ChevronLeft className="h-5 w-5 text-ai-electric" />
             <div>
-              <div className="text-xs text-ai-blue/70 uppercase tracking-wide font-medium">Previous</div>
+              <div className="text-xs text-gray-500 uppercase tracking-wide font-medium">Previous</div>
               <div className="group-hover:text-ai-electric font-medium transition-colors">{previous.page.title}</div>
             </div>
           </Link>
@@ -220,10 +221,10 @@ const PageNavigation: React.FC<PageNavigationProps> = ({ previous, next }) => {
         {next && (
           <Link
             to={`/docs/${next.section.id}/${next.page.id}`}
-            className="group flex items-center justify-end space-x-3 text-sm text-gray-600 hover:text-ai-blue transition-colors p-4 rounded-lg hover:bg-ai-blue/5"
+            className="group flex items-center justify-end space-x-3 text-sm text-gray-400 hover:text-gray-200 transition-colors p-4 rounded-lg hover:bg-gray-800/50"
           >
             <div>
-              <div className="text-xs text-ai-blue/70 uppercase tracking-wide font-medium">Next</div>
+              <div className="text-xs text-gray-500 uppercase tracking-wide font-medium">Next</div>
               <div className="group-hover:text-ai-electric font-medium transition-colors">{next.page.title}</div>
             </div>
             <ChevronRight className="h-5 w-5 text-ai-electric" />
@@ -323,10 +324,10 @@ const Documentation: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-ai-blue flex items-center justify-center">
         <div className="text-center">
-          <BookOpen className="h-12 w-12 animate-pulse mx-auto mb-6 text-ai-blue" />
-          <p className="text-xl text-ai-blue font-medium">Loading documentation...</p>
+          <BookOpen className="h-12 w-12 animate-pulse mx-auto mb-6 text-ai-electric" />
+          <p className="text-xl text-white font-medium">Loading documentation...</p>
         </div>
       </div>
     );
@@ -334,13 +335,13 @@ const Documentation: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
-        <Card className="max-w-md shadow-xl border border-ai-blue/10">
+      <div className="min-h-screen bg-ai-blue flex items-center justify-center">
+        <Card className="max-w-md shadow-xl border border-gray-700 bg-gray-800">
           <CardContent className="p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4 text-ai-blue">Error</h2>
-            <p className="text-gray-600 mb-6 leading-relaxed">{error}</p>
+            <h2 className="text-2xl font-bold mb-4 text-white">Error</h2>
+            <p className="text-gray-300 mb-6 leading-relaxed">{error}</p>
             <Link to="/">
-              <Button className="bg-ai-electric hover:bg-ai-blue text-white font-medium px-6 py-2">Return Home</Button>
+              <Button className="bg-ai-electric hover:bg-ai-electric/80 text-white font-medium px-6 py-2">Return Home</Button>
             </Link>
           </CardContent>
         </Card>
@@ -354,17 +355,17 @@ const Documentation: React.FC = () => {
   const navigation = getPageNavigation(config, sectionId, pageId);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">{/* Changed to match Examples component background */}
+    <div className="min-h-screen bg-ai-blue">
       {/* Mobile Header */}
-      <div className="lg:hidden border-b border-ai-blue/10">
+      <div className="lg:hidden border-b border-gray-700">
         <div className="flex items-center justify-between p-4">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="text-white hover:bg-gray-800">
                 <Menu className="h-4 w-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-80 p-0">
+            <SheetContent side="left" className="w-80 p-0 bg-gray-900 border-gray-700">
               <Sidebar
                 config={config}
                 currentSectionId={sectionId}
@@ -373,14 +374,14 @@ const Documentation: React.FC = () => {
               />
             </SheetContent>
           </Sheet>
-          <h1 className="font-semibold text-ai-blue">Documentation</h1>
+          <h1 className="font-semibold text-white">Documentation</h1>
           <div className="w-10" /> {/* Spacer */}
         </div>
       </div>
 
       <div className="flex">
         {/* Desktop Sidebar */}
-        <div className="hidden lg:block w-80 border-r border-ai-blue/10 bg-white/50 backdrop-blur-sm">
+        <div className="hidden lg:block w-80 border-r border-gray-700 bg-gray-900/50 backdrop-blur-sm">
           <div className="sticky top-0 h-screen">
             <Sidebar
               config={config}
@@ -399,26 +400,26 @@ const Documentation: React.FC = () => {
                 <Breadcrumb className="mb-8">
                   <BreadcrumbList>
                     <BreadcrumbItem>
-                      <BreadcrumbLink href="/" className="text-ai-blue hover:text-ai-electric">Home</BreadcrumbLink>
+                      <BreadcrumbLink href="/" className="text-gray-400 hover:text-ai-electric">Home</BreadcrumbLink>
                     </BreadcrumbItem>
-                    <BreadcrumbSeparator className="text-ai-blue/40" />
+                    <BreadcrumbSeparator className="text-gray-600" />
                     <BreadcrumbItem>
-                      <BreadcrumbLink href="/docs" className="text-ai-blue hover:text-ai-electric">Documentation</BreadcrumbLink>
+                      <BreadcrumbLink href="/docs" className="text-gray-400 hover:text-ai-electric">Documentation</BreadcrumbLink>
                     </BreadcrumbItem>
-                    <BreadcrumbSeparator className="text-ai-blue/40" />
+                    <BreadcrumbSeparator className="text-gray-600" />
                     <BreadcrumbItem>
-                      <BreadcrumbPage className="text-ai-blue font-medium">{pageInfo.section.title}</BreadcrumbPage>
+                      <BreadcrumbPage className="text-white font-medium">{pageInfo.section.title}</BreadcrumbPage>
                     </BreadcrumbItem>
-                    <BreadcrumbSeparator className="text-ai-blue/40" />
+                    <BreadcrumbSeparator className="text-gray-600" />
                     <BreadcrumbItem>
-                      <BreadcrumbPage className="text-ai-blue font-medium">{pageInfo.page.title}</BreadcrumbPage>
+                      <BreadcrumbPage className="text-white font-medium">{pageInfo.page.title}</BreadcrumbPage>
                     </BreadcrumbItem>
                   </BreadcrumbList>
                 </Breadcrumb>
               )}
 
               {/* Content */}
-              <div className="bg-white rounded-lg shadow-xl overflow-hidden border border-ai-blue/10">
+              <div className="bg-gray-900/50 rounded-lg shadow-xl overflow-hidden border border-gray-700 backdrop-blur-sm">
                 <article className="prose prose-slate dark:prose-invert max-w-none p-8">
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
@@ -427,7 +428,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 1);
                         return (
-                          <h1 {...props} id={id} className="text-4xl md:text-5xl font-bold text-ai-blue mb-6 border-b border-ai-blue/20 pb-4">
+                          <h1 {...props} id={id} className="text-4xl md:text-5xl font-bold text-white mb-6 border-b border-gray-700 pb-4">
                             {children}
                           </h1>
                         );
@@ -436,7 +437,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 2);
                         return (
-                          <h2 {...props} id={id} className="text-3xl font-bold text-ai-blue mt-12 mb-6">
+                          <h2 {...props} id={id} className="text-3xl font-bold text-white mt-12 mb-6">
                             {children}
                           </h2>
                         );
@@ -445,7 +446,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 3);
                         return (
-                          <h3 {...props} id={id} className="text-2xl font-semibold text-ai-blue mt-10 mb-4">
+                          <h3 {...props} id={id} className="text-2xl font-semibold text-white mt-10 mb-4">
                             {children}
                           </h3>
                         );
@@ -454,7 +455,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 4);
                         return (
-                          <h4 {...props} id={id} className="text-xl font-semibold text-ai-blue mt-8 mb-3">
+                          <h4 {...props} id={id} className="text-xl font-semibold text-white mt-8 mb-3">
                             {children}
                           </h4>
                         );
@@ -463,7 +464,7 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 5);
                         return (
-                          <h5 {...props} id={id} className="text-lg font-semibold text-ai-blue mt-6 mb-2">
+                          <h5 {...props} id={id} className="text-lg font-semibold text-white mt-6 mb-2">
                             {children}
                           </h5>
                         );
@@ -472,13 +473,13 @@ const Documentation: React.FC = () => {
                         const text = React.Children.toArray(children).join('');
                         const id = getHeadingId(text, 6);
                         return (
-                          <h6 {...props} id={id} className="text-base font-semibold text-ai-blue mt-4 mb-2">
+                          <h6 {...props} id={id} className="text-base font-semibold text-white mt-4 mb-2">
                             {children}
                           </h6>
                         );
                       },
                       p: ({ children, ...props }) => (
-                        <p {...props} className="text-gray-600 leading-relaxed mb-4">
+                        <p {...props} className="text-gray-300 leading-relaxed mb-4">
                           {children}
                         </p>
                       ),
@@ -500,7 +501,7 @@ const Documentation: React.FC = () => {
                         return (
                           <code 
                             {...props} 
-                            className="bg-ai-blue/10 text-ai-blue px-2 py-1 rounded text-sm font-mono"
+                            className="bg-gray-800 text-ai-electric px-2 py-1 rounded text-sm font-mono"
                           >
                             {children}
                           </code>
@@ -513,18 +514,18 @@ const Documentation: React.FC = () => {
                       blockquote: ({ children, ...props }) => (
                         <blockquote 
                           {...props} 
-                          className="border-l-4 border-ai-electric bg-ai-blue/5 pl-6 py-2 my-6 italic text-gray-700"
+                          className="border-l-4 border-ai-electric bg-gray-800/50 pl-6 py-2 my-6 italic text-gray-300"
                         >
                           {children}
                         </blockquote>
                       ),
                       ul: ({ children, ...props }) => (
-                        <ul {...props} className="list-disc pl-6 space-y-2 text-gray-600 mb-4">
+                        <ul {...props} className="list-disc pl-6 space-y-2 text-gray-300 mb-4">
                           {children}
                         </ul>
                       ),
                       ol: ({ children, ...props }) => (
-                        <ol {...props} className="list-decimal pl-6 space-y-2 text-gray-600 mb-4">
+                        <ol {...props} className="list-decimal pl-6 space-y-2 text-gray-300 mb-4">
                           {children}
                         </ol>
                       ),
@@ -537,20 +538,20 @@ const Documentation: React.FC = () => {
                         <a 
                           {...props} 
                           href={href}
-                          className="text-ai-electric hover:text-ai-blue font-medium underline decoration-ai-electric/30 hover:decoration-ai-blue/50 transition-colors"
+                          className="text-ai-electric hover:text-ai-neon font-medium underline decoration-ai-electric/30 hover:decoration-ai-neon/50 transition-colors"
                         >
                           {children}
                         </a>
                       ),
                       table: ({ children, ...props }) => (
                         <div className="overflow-x-auto my-6">
-                          <table {...props} className="min-w-full border border-ai-blue/20 rounded-lg overflow-hidden">
+                          <table {...props} className="min-w-full border border-gray-700 rounded-lg overflow-hidden">
                             {children}
                           </table>
                         </div>
                       ),
                       thead: ({ children, ...props }) => (
-                        <thead {...props} className="bg-ai-blue text-white">
+                        <thead {...props} className="bg-gray-800 text-white">
                           {children}
                         </thead>
                       ),
@@ -560,7 +561,7 @@ const Documentation: React.FC = () => {
                         </th>
                       ),
                       td: ({ children, ...props }) => (
-                        <td {...props} className="px-4 py-3 border-t border-ai-blue/10">
+                        <td {...props} className="px-4 py-3 border-t border-gray-700 text-gray-300">
                           {children}
                         </td>
                       ),
@@ -580,7 +581,7 @@ const Documentation: React.FC = () => {
 
           {/* Table of Contents - Desktop */}
           {config.theme.showTableOfContents && toc.length > 0 && (
-            <aside className="hidden xl:block w-64 border-l border-ai-blue/10 bg-white/50 backdrop-blur-sm">
+            <aside className="hidden xl:block w-64 border-l border-gray-700 bg-gray-900/50 backdrop-blur-sm">
               <div className="sticky top-0 h-screen overflow-auto p-6">
                 <TableOfContents toc={toc} />
               </div>
