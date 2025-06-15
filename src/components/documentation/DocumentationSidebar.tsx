@@ -12,18 +12,18 @@ interface DocumentationSidebarProps {
 
 const DocumentationSidebar: React.FC<DocumentationSidebarProps> = ({ config, toc }) => {
   return (
-    <div className="hidden xl:block w-80 border-l border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/80 backdrop-blur-md">
+    <div className="w-64 xl:w-80 border-l border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/80 backdrop-blur-md">
       <div className="sticky top-0 h-screen">
-        <ScrollArea className="h-full py-6 px-4">
-          <div className="space-y-6">
+        <ScrollArea className="h-full py-4 xl:py-6 px-3 xl:px-4">
+          <div className="space-y-4 xl:space-y-6">
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-bold text-lg text-white dark:text-white light:text-gray-900">TOOLS</h3>
+              <div className="flex items-center justify-between mb-3 xl:mb-4">
+                <h3 className="font-bold text-base xl:text-lg text-white dark:text-white light:text-gray-900">TOOLS</h3>
               </div>
               
-              <div className="space-y-4">
+              <div className="space-y-3 xl:space-y-4">
                 <div>
-                  <h4 className="font-semibold text-sm text-white dark:text-white light:text-gray-900 mb-2">Search</h4>
+                  <h4 className="font-semibold text-xs xl:text-sm text-white dark:text-white light:text-gray-900 mb-2">Search</h4>
                   <DocSearch config={config} />
                 </div>
               </div>
@@ -31,7 +31,7 @@ const DocumentationSidebar: React.FC<DocumentationSidebarProps> = ({ config, toc
 
             {config.theme.showTableOfContents && toc.length > 0 && (
               <div>
-                <h3 className="font-bold text-lg text-white dark:text-white light:text-gray-900 mb-4">ON THIS PAGE</h3>
+                <h3 className="font-bold text-base xl:text-lg text-white dark:text-white light:text-gray-900 mb-3 xl:mb-4">ON THIS PAGE</h3>
                 <TableOfContents toc={toc} />
               </div>
             )}

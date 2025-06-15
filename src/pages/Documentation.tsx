@@ -92,7 +92,7 @@ const Documentation: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue flex items-center justify-center px-4">
         <div className="text-center">
           <BookOpen className="h-12 w-12 animate-pulse mx-auto mb-6 text-ai-electric" />
           <p className="text-xl text-white font-medium">Loading documentation...</p>
@@ -103,11 +103,11 @@ const Documentation: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue flex items-center justify-center">
-        <Card className="max-w-md shadow-xl border border-gray-700 bg-gray-900/80 backdrop-blur-sm">
+      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue flex items-center justify-center px-4">
+        <Card className="max-w-md w-full shadow-xl border border-gray-700 bg-gray-900/80 backdrop-blur-sm">
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold mb-4 text-white">Error</h2>
-            <p className="text-gray-300 mb-6 leading-relaxed">{error}</p>
+            <p className="text-gray-300 mb-6 leading-relaxed break-words">{error}</p>
             <Link to="/">
               <Button className="bg-ai-electric hover:bg-ai-electric/80 text-white font-medium px-6 py-2">Return Home</Button>
             </Link>
@@ -131,7 +131,7 @@ const Documentation: React.FC = () => {
         currentPageId={pageId}
       />
 
-      <div className="flex">
+      <div className="flex min-h-screen">
         {/* Desktop Sidebar */}
         <div className="hidden lg:block w-80 border-r border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/80 backdrop-blur-md">
           <div className="sticky top-0 h-screen">
@@ -144,34 +144,34 @@ const Documentation: React.FC = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex">
-          <main className="flex-1 max-w-4xl">
-            <div className="p-6 lg:p-8">
+        <div className="flex-1 flex min-w-0">
+          <main className="flex-1 min-w-0">
+            <div className="p-4 sm:p-6 lg:p-8">
               {/* Breadcrumbs */}
               {pageInfo && (
-                <div className="mb-8 p-4 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/60 backdrop-blur-sm rounded-lg border border-gray-700/50 dark:border-gray-700/50 light:border-gray-200">
+                <div className="mb-6 sm:mb-8 p-3 sm:p-4 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/60 backdrop-blur-sm rounded-lg border border-gray-700/50 dark:border-gray-700/50 light:border-gray-200">
                   <Breadcrumb>
-                    <BreadcrumbList>
+                    <BreadcrumbList className="flex-wrap">
                       <BreadcrumbItem>
-                        <BreadcrumbLink href="/" className="text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-ai-electric transition-colors">
+                        <BreadcrumbLink href="/" className="text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-ai-electric transition-colors text-sm">
                           Home
                         </BreadcrumbLink>
                       </BreadcrumbItem>
                       <BreadcrumbSeparator className="text-gray-600 dark:text-gray-600 light:text-gray-400" />
                       <BreadcrumbItem>
-                        <BreadcrumbLink href="/docs" className="text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-ai-electric transition-colors">
-                          Documentation
+                        <BreadcrumbLink href="/docs" className="text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-ai-electric transition-colors text-sm">
+                          Docs
                         </BreadcrumbLink>
                       </BreadcrumbItem>
                       <BreadcrumbSeparator className="text-gray-600 dark:text-gray-600 light:text-gray-400" />
-                      <BreadcrumbItem>
-                        <BreadcrumbPage className="text-ai-electric font-medium">
+                      <BreadcrumbItem className="hidden sm:block">
+                        <BreadcrumbPage className="text-ai-electric font-medium text-sm">
                           {pageInfo.section.title}
                         </BreadcrumbPage>
                       </BreadcrumbItem>
-                      <BreadcrumbSeparator className="text-gray-600 dark:text-gray-600 light:text-gray-400" />
+                      <BreadcrumbSeparator className="text-gray-600 dark:text-gray-600 light:text-gray-400 hidden sm:block" />
                       <BreadcrumbItem>
-                        <BreadcrumbPage className="text-white dark:text-white light:text-gray-900 font-medium">
+                        <BreadcrumbPage className="text-white dark:text-white light:text-gray-900 font-medium text-sm break-words">
                           {pageInfo.page.title}
                         </BreadcrumbPage>
                       </BreadcrumbItem>
@@ -181,17 +181,21 @@ const Documentation: React.FC = () => {
               )}
 
               {/* Content */}
-              <MarkdownRenderer content={content} toc={toc} />
+              <div className="min-w-0">
+                <MarkdownRenderer content={content} toc={toc} />
+              </div>
 
               {/* Page Navigation */}
-              <div className="mt-8">
+              <div className="mt-6 sm:mt-8">
                 <PageNavigation previous={navigation.previous} next={navigation.next} />
               </div>
             </div>
           </main>
 
           {/* Right Sidebar - Search & Table of Contents */}
-          <DocumentationSidebar config={config} toc={toc} />
+          <div className="hidden xl:block">
+            <DocumentationSidebar config={config} toc={toc} />
+          </div>
         </div>
       </div>
     </div>
