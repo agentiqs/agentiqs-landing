@@ -15,25 +15,25 @@ const ThemeToggle: React.FC = () => {
 
   useEffect(() => {
     // Apply theme on mount and when isDark changes
-    updateTheme(isDark);
-  }, [isDark]);
-
-  const updateTheme = (dark: boolean) => {
     const html = document.documentElement;
-    if (dark) {
+    console.log('Applying theme:', isDark ? 'dark' : 'light');
+    console.log('HTML element before:', html.classList.toString());
+    
+    if (isDark) {
       html.classList.add('dark');
     } else {
       html.classList.remove('dark');
     }
     
+    console.log('HTML element after:', html.classList.toString());
+    
     // Save to localStorage
-    localStorage.setItem('docs-theme', dark ? 'dark' : 'light');
-  };
+    localStorage.setItem('docs-theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   const toggleTheme = () => {
-    const newIsDark = !isDark;
-    setIsDark(newIsDark);
-    console.log('Theme toggled to:', newIsDark ? 'dark' : 'light');
+    console.log('Toggle clicked, current isDark:', isDark);
+    setIsDark(!isDark);
   };
 
   return (
