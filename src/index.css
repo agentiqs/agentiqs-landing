@@ -100,4 +100,9 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
 }
