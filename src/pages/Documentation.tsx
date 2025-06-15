@@ -1,240 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { ChevronLeft, ChevronRight, Menu, BookOpen, Home, ExternalLink } from 'lucide-react';
-import CodeBlock from '@/components/CodeBlock';
-import DocSearch from '@/components/DocSearch';
-import ThemeToggle from '@/components/ThemeToggle';
+import { BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import DocumentationHeader from '@/components/documentation/DocumentationHeader';
+import Sidebar from '@/components/documentation/Sidebar';
+import MarkdownRenderer from '@/components/documentation/MarkdownRenderer';
+import PageNavigation from '@/components/documentation/PageNavigation';
+import DocumentationSidebar from '@/components/documentation/DocumentationSidebar';
 import {
   loadDocConfig,
   loadMarkdownContent,
   generateTableOfContents,
   findPage,
   getPageNavigation,
-  type DocConfig,
-  type DocSection,
-  type DocPage
+  type DocConfig
 } from '@/utils/docLoader';
-
-// Import highlight.js styles
-// import 'highlight.js/styles/github.css';
-
-interface TableOfContentsProps {
-  toc: Array<{id: string; title: string; level: number}>;
-  onItemClick?: () => void;
-}
-
-const TableOfContents: React.FC<TableOfContentsProps> = ({ toc, onItemClick }) => {
-  const [activeId, setActiveId] = useState<string>('');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Find the topmost visible heading
-      let currentActiveId = '';
-      let minDistance = Infinity;
-
-      toc.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          // Check if the heading is above the viewport center
-          if (rect.top <= window.innerHeight * 0.3) {
-            const distance = Math.abs(rect.top);
-            if (distance < minDistance) {
-              minDistance = distance;
-              currentActiveId = item.id;
-            }
-          }
-        }
-      });
-
-      // If no heading is above the center, use the first visible one
-      if (!currentActiveId) {
-        for (const item of toc) {
-          const element = document.getElementById(item.id);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            if (rect.top >= 0 && rect.top <= window.innerHeight) {
-              currentActiveId = item.id;
-              break;
-            }
-          }
-        }
-      }
-
-      if (currentActiveId !== activeId) {
-        setActiveId(currentActiveId);
-      }
-    };
-
-    // Add scroll listener with throttling
-    let timeoutId: NodeJS.Timeout;
-    const throttledHandleScroll = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(handleScroll, 50);
-    };
-
-    window.addEventListener('scroll', throttledHandleScroll);
-    handleScroll(); // Initial call
-
-    return () => {
-      window.removeEventListener('scroll', throttledHandleScroll);
-      clearTimeout(timeoutId);
-    };
-  }, [toc, activeId]);
-
-  if (toc.length === 0) return null;
-
-  const handleTocClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-    onItemClick?.();
-  };
-
-  return (
-    <div className="space-y-4">
-      <h4 className="font-semibold text-sm uppercase tracking-wide text-white dark:text-white">
-        On This Page
-      </h4>
-      <nav className="space-y-2">
-        {toc.map((item) => (
-          <a
-            key={item.id}
-            href={`#${item.id}`}
-            onClick={(e) => handleTocClick(e, item.id)}
-            className={`block text-sm transition-colors border-l-2 pl-3 py-2 rounded-r ${
-              activeId === item.id
-                ? 'border-ai-electric text-ai-electric font-medium bg-ai-electric/10'
-                : 'border-transparent hover:text-gray-300 hover:border-gray-600 text-gray-400'
-            } ${
-              item.level === 1 ? '' : 
-              item.level === 2 ? 'ml-3' : 
-              'ml-6'
-            }`}
-          >
-            {item.title}
-          </a>
-        ))}
-      </nav>
-    </div>
-  );
-};
-
-interface SidebarProps {
-  config: DocConfig;
-  currentSectionId?: string;
-  currentPageId?: string;
-  onItemClick?: () => void;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ config, currentSectionId, currentPageId, onItemClick }) => {
-  const navigate = useNavigate();
-
-  const handlePageClick = (sectionId: string, pageId: string) => {
-    // Reset scroll position immediately when clicking a navigation item
-    window.scrollTo({ top: 0, behavior: 'auto' });
-    navigate(`/docs/${sectionId}/${pageId}`);
-    onItemClick?.();
-  };
-
-  return (
-    <ScrollArea className="h-full py-6 px-4">
-      <div className="space-y-6">
-        <div>
-          <Link to="/" className="flex items-center space-x-2 text-sm text-gray-400 hover:text-ai-electric transition-colors">
-            <Home className="h-4 w-4" />
-            <span>Back to Home</span>
-          </Link>
-        </div>
-        
-        <div>
-          <h3 className="font-bold text-xl mb-6 text-white">{config.title}</h3>
-          <nav className="space-y-6">
-            {config.sections.map((section, sectionIndex) => (
-              <div key={section.id}>
-                <h4 className="font-semibold text-sm uppercase tracking-wide text-white mb-3 border-b border-gray-700 pb-2">
-                  {config.navigation.showSectionNumbers && `${sectionIndex + 1}. `}
-                  {section.title}
-                </h4>
-                <ul className="space-y-1 ml-2">
-                  {section.pages.map((page, pageIndex) => (
-                    <li key={page.id}>
-                      <button
-                        onClick={() => handlePageClick(section.id, page.id)}
-                        className={`w-full text-left text-sm px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${
-                          currentSectionId === section.id && currentPageId === page.id
-                            ? 'bg-ai-electric/20 text-ai-electric font-semibold border-l-2 border-ai-electric'
-                            : 'text-gray-400 hover:text-gray-200'
-                        }`}
-                      >
-                        {config.navigation.showPageNumbers && `${pageIndex + 1}. `}
-                        {page.title}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
-        </div>
-      </div>
-    </ScrollArea>
-  );
-};
-
-interface PageNavigationProps {
-  previous: { section: DocSection; page: DocPage } | null;
-  next: { section: DocSection; page: DocPage } | null;
-}
-
-const PageNavigation: React.FC<PageNavigationProps> = ({ previous, next }) => {
-  return (
-    <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-700 dark:border-gray-700">
-      <div className="flex-1">
-        {previous && (
-          <Link
-            to={`/docs/${previous.section.id}/${previous.page.id}`}
-            className="group flex items-center space-x-3 text-sm text-gray-400 hover:text-gray-200 transition-colors p-4 rounded-lg hover:bg-gray-800/50"
-          >
-            <ChevronLeft className="h-5 w-5 text-ai-electric" />
-            <div>
-              <div className="text-xs text-gray-500 uppercase tracking-wide font-medium">Previous</div>
-              <div className="group-hover:text-ai-electric font-medium transition-colors">{previous.page.title}</div>
-            </div>
-          </Link>
-        )}
-      </div>
-      
-      <div className="flex-1 text-right">
-        {next && (
-          <Link
-            to={`/docs/${next.section.id}/${next.page.id}`}
-            className="group flex items-center justify-end space-x-3 text-sm text-gray-400 hover:text-gray-200 transition-colors p-4 rounded-lg hover:bg-gray-800/50"
-          >
-            <div>
-              <div className="text-xs text-gray-500 uppercase tracking-wide font-medium">Next</div>
-              <div className="group-hover:text-ai-electric font-medium transition-colors">{next.page.title}</div>
-            </div>
-            <ChevronRight className="h-5 w-5 text-ai-electric" />
-          </Link>
-        )}
-      </div>
-    </div>
-  );
-};
 
 const Documentation: React.FC = () => {
   const { sectionId, pageId } = useParams<{ sectionId?: string; pageId?: string }>();
@@ -245,20 +28,6 @@ const Documentation: React.FC = () => {
   const [toc, setToc] = useState<Array<{id: string; title: string; level: number}>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  // Counters for duplicate headings - reset when content changes
-  const headingCounters = useRef<Record<string, number>>({});
-
-  const getHeadingId = (text: string, level: number): string => {
-    const key = `${level}-${text}`;
-    const currentCount = headingCounters.current[key] || 0;
-    headingCounters.current[key] = currentCount + 1;
-    
-    const matchingItems = toc.filter(item => item.title === text && item.level === level);
-    const tocItem = matchingItems[currentCount];
-    
-    return tocItem?.id || text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-  };
 
   useEffect(() => {
     loadDocConfig()
@@ -297,8 +66,6 @@ const Documentation: React.FC = () => {
           const tocData = generateTableOfContents(markdown, config.theme.maxTocDepth);
           setToc(tocData);
         }
-        // Reset heading counters for new content
-        headingCounters.current = {};
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
@@ -358,27 +125,11 @@ const Documentation: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue light:bg-gradient-to-br light:from-gray-50 light:via-white light:to-gray-100">
       {/* Mobile Header */}
-      <div className="lg:hidden border-b border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 bg-gray-900/50 dark:bg-gray-900/50 light:bg-white/90 backdrop-blur-md">
-        <div className="flex items-center justify-between p-4">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="sm" className="text-white dark:text-white light:text-gray-900 hover:bg-gray-800 light:hover:bg-gray-100">
-                <Menu className="h-4 w-4" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-80 p-0 bg-gray-900/95 dark:bg-gray-900/95 light:bg-white border-gray-700 dark:border-gray-700 light:border-gray-200 backdrop-blur-md">
-              <Sidebar
-                config={config}
-                currentSectionId={sectionId}
-                currentPageId={pageId}
-                onItemClick={() => {}}
-              />
-            </SheetContent>
-          </Sheet>
-          <h1 className="font-semibold text-white dark:text-white light:text-gray-900">Documentation</h1>
-          <ThemeToggle />
-        </div>
-      </div>
+      <DocumentationHeader 
+        config={config}
+        currentSectionId={sectionId}
+        currentPageId={pageId}
+      />
 
       <div className="flex">
         {/* Desktop Sidebar */}
@@ -430,156 +181,7 @@ const Documentation: React.FC = () => {
               )}
 
               {/* Content */}
-              <div className="bg-gray-900/40 dark:bg-gray-900/40 light:bg-white/80 rounded-xl shadow-2xl overflow-hidden border border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 backdrop-blur-sm">
-                <article className="prose prose-slate dark:prose-invert light:prose-gray max-w-none p-8 lg:p-12">
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      h1: ({ children, ...props }) => {
-                        const text = React.Children.toArray(children).join('');
-                        const id = getHeadingId(text, 1);
-                        return (
-                          <h1 {...props} id={id} className="text-4xl md:text-5xl font-bold text-white dark:text-white light:text-gray-900 mb-8 border-b border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 pb-6">
-                            {children}
-                          </h1>
-                        );
-                      },
-                      h2: ({ children, ...props }) => {
-                        const text = React.Children.toArray(children).join('');
-                        const id = getHeadingId(text, 2);
-                        return (
-                          <h2 {...props} id={id} className="text-3xl font-bold text-white dark:text-white light:text-gray-900 mt-16 mb-6 border-l-4 border-ai-electric pl-4">
-                            {children}
-                          </h2>
-                        );
-                      },
-                      h3: ({ children, ...props }) => {
-                        const text = React.Children.toArray(children).join('');
-                        const id = getHeadingId(text, 3);
-                        return (
-                          <h3 {...props} id={id} className="text-2xl font-semibold text-white dark:text-white light:text-gray-900 mt-12 mb-4">
-                            {children}
-                          </h3>
-                        );
-                      },
-                      h4: ({ children, ...props }) => {
-                        const text = React.Children.toArray(children).join('');
-                        const id = getHeadingId(text, 4);
-                        return (
-                          <h4 {...props} id={id} className="text-xl font-semibold text-white dark:text-white light:text-gray-900 mt-8 mb-3">
-                            {children}
-                          </h4>
-                        );
-                      },
-                      h5: ({ children, ...props }) => {
-                        const text = React.Children.toArray(children).join('');
-                        const id = getHeadingId(text, 5);
-                        return (
-                          <h5 {...props} id={id} className="text-lg font-semibold text-white dark:text-white light:text-gray-900 mt-6 mb-2">
-                            {children}
-                          </h5>
-                        );
-                      },
-                      h6: ({ children, ...props }) => {
-                        const text = React.Children.toArray(children).join('');
-                        const id = getHeadingId(text, 6);
-                        return (
-                          <h6 {...props} id={id} className="text-base font-semibold text-white dark:text-white light:text-gray-900 mt-4 mb-2">
-                            {children}
-                          </h6>
-                        );
-                      },
-                      p: ({ children, ...props }) => (
-                        <p {...props} className="text-gray-300 dark:text-gray-300 light:text-gray-700 leading-relaxed mb-6 text-lg">
-                          {children}
-                        </p>
-                      ),
-                      code: ({ node, className, children, ...props }: any) => {
-                        const match = /language-(\w+)/.exec(className || '');
-                        const language = match ? match[1] : '';
-                        const inline = !match;
-                        
-                        if (!inline && match) {
-                          return (
-                            <CodeBlock
-                              code={String(children).replace(/\n$/, '')}
-                              language={language}
-                            />
-                          );
-                        }
-                        return (
-                          <code 
-                            {...props} 
-                            className="bg-gray-700 dark:bg-gray-700 light:bg-gray-100 text-ai-electric dark:text-ai-electric light:text-ai-electric px-2 py-1 rounded text-sm font-mono border border-gray-600 dark:border-gray-600 light:border-gray-300"
-                          >
-                            {children}
-                          </code>
-                        );
-                      },
-                      pre: ({ children, ...props }) => {
-                        return <>{children}</>;
-                      },
-                      blockquote: ({ children, ...props }) => (
-                        <blockquote 
-                          {...props} 
-                          className="border-l-4 border-ai-electric bg-gray-800/30 dark:bg-gray-800/30 light:bg-ai-electric/5 pl-6 py-4 my-6 italic text-gray-300 dark:text-gray-300 light:text-gray-700 rounded-r-lg"
-                        >
-                          {children}
-                        </blockquote>
-                      ),
-                      ul: ({ children, ...props }) => (
-                        <ul {...props} className="list-disc pl-6 space-y-3 text-gray-300 dark:text-gray-300 light:text-gray-700 mb-6">
-                          {children}
-                        </ul>
-                      ),
-                      ol: ({ children, ...props }) => (
-                        <ol {...props} className="list-decimal pl-6 space-y-3 text-gray-300 dark:text-gray-300 light:text-gray-700 mb-6">
-                          {children}
-                        </ol>
-                      ),
-                      li: ({ children, ...props }) => (
-                        <li {...props} className="leading-relaxed text-lg">
-                          {children}
-                        </li>
-                      ),
-                      a: ({ children, href, ...props }) => (
-                        <a 
-                          {...props} 
-                          href={href}
-                          className="text-ai-electric hover:text-ai-neon font-medium underline decoration-ai-electric/30 hover:decoration-ai-neon/50 transition-all duration-200 inline-flex items-center gap-1"
-                        >
-                          {children}
-                          {href?.startsWith('http') && <ExternalLink className="h-3 w-3" />}
-                        </a>
-                      ),
-                      table: ({ children, ...props }) => (
-                        <div className="overflow-x-auto my-8 rounded-lg border border-gray-700 dark:border-gray-700 light:border-gray-200">
-                          <table {...props} className="min-w-full">
-                            {children}
-                          </table>
-                        </div>
-                      ),
-                      thead: ({ children, ...props }) => (
-                        <thead {...props} className="bg-gray-800 dark:bg-gray-800 light:bg-gray-50 text-white dark:text-white light:text-gray-900">
-                          {children}
-                        </thead>
-                      ),
-                      th: ({ children, ...props }) => (
-                        <th {...props} className="px-6 py-4 text-left font-semibold">
-                          {children}
-                        </th>
-                      ),
-                      td: ({ children, ...props }) => (
-                        <td {...props} className="px-6 py-4 border-t border-gray-700 dark:border-gray-700 light:border-gray-200 text-gray-300 dark:text-gray-300 light:text-gray-700">
-                          {children}
-                        </td>
-                      ),
-                    }}
-                  >
-                    {content}
-                  </ReactMarkdown>
-                </article>
-              </div>
+              <MarkdownRenderer content={content} toc={toc} />
 
               {/* Page Navigation */}
               <div className="mt-8">
@@ -589,35 +191,7 @@ const Documentation: React.FC = () => {
           </main>
 
           {/* Right Sidebar - Search & Table of Contents */}
-          <aside className="hidden xl:block w-80 border-l border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/80 backdrop-blur-md">
-            <div className="sticky top-0 h-screen overflow-auto p-6">
-              <div className="space-y-8">
-                {/* Header with theme toggle */}
-                <div className="flex items-center justify-between">
-                  <h4 className="font-semibold text-sm uppercase tracking-wide text-white dark:text-white light:text-gray-900">
-                    Tools
-                  </h4>
-                  <ThemeToggle />
-                </div>
-
-                {/* Search */}
-                <div className="space-y-4">
-                  <h5 className="font-medium text-sm text-gray-300 dark:text-gray-300 light:text-gray-600">
-                    Search
-                  </h5>
-                  <DocSearch config={config} />
-                </div>
-
-                {/* Separator */}
-                <Separator className="bg-gray-700/50 dark:bg-gray-700/50 light:bg-gray-200" />
-
-                {/* Table of Contents */}
-                {config.theme.showTableOfContents && toc.length > 0 && (
-                  <TableOfContents toc={toc} />
-                )}
-              </div>
-            </div>
-          </aside>
+          <DocumentationSidebar config={config} toc={toc} />
         </div>
       </div>
     </div>
