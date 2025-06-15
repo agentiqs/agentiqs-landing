@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -235,10 +234,32 @@ const DocSearch: React.FC<DocSearchProps> = ({ config, onResultClick }) => {
   const handleResultClick = (result: SearchResult) => {
     const path = `/docs/${result.sectionId}/${result.pageId}`;
     const hash = result.headingId ? `#${result.headingId}` : '';
-    navigate(path + hash);
-    setQuery('');
-    setIsOpen(false);
-    onResultClick?.();
+    
+    // If we're already on the same page, just scroll to the heading
+    const currentPath = window.location.pathname;
+    if (currentPath === path && result.headingId) {
+      // Clear search first
+      setQuery('');
+      setIsOpen(false);
+      onResultClick?.();
+      
+      // Small delay to ensure the search UI is closed before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(result.headingId!);
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+    } else {
+      // Navigate to the page with hash
+      navigate(path + hash);
+      setQuery('');
+      setIsOpen(false);
+      onResultClick?.();
+    }
   };
 
   const clearSearch = () => {

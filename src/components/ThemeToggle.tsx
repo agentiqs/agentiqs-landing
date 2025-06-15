@@ -20,10 +20,13 @@ const ThemeToggle: React.FC = () => {
   }, []);
 
   const updateTheme = (dark: boolean) => {
+    const html = document.documentElement;
     if (dark) {
-      document.documentElement.classList.add('dark');
+      html.classList.add('dark');
+      html.classList.remove('light');
     } else {
-      document.documentElement.classList.remove('dark');
+      html.classList.remove('dark');
+      html.classList.add('light');
     }
   };
 
@@ -39,7 +42,7 @@ const ThemeToggle: React.FC = () => {
       variant="ghost"
       size="sm"
       onClick={toggleTheme}
-      className="h-9 w-9 p-0 text-gray-400 hover:text-white hover:bg-gray-800"
+      className="h-9 w-9 p-0 text-gray-400 hover:text-white dark:hover:text-white light:hover:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-800 light:hover:bg-gray-100"
       title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
       {isDark ? (
