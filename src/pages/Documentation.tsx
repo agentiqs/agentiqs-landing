@@ -92,10 +92,10 @@ const Documentation: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue flex items-center justify-center">
         <div className="text-center">
-          <BookOpen className="h-12 w-12 animate-pulse mx-auto mb-6 text-blue-600 dark:text-ai-electric" />
-          <p className="text-xl text-gray-900 dark:text-white font-medium">Loading documentation...</p>
+          <BookOpen className="h-12 w-12 animate-pulse mx-auto mb-6 text-ai-electric" />
+          <p className="text-xl text-white font-medium">Loading documentation...</p>
         </div>
       </div>
     );
@@ -103,13 +103,13 @@ const Documentation: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue flex items-center justify-center">
-        <Card className="max-w-md shadow-xl border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm">
+      <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue flex items-center justify-center">
+        <Card className="max-w-md shadow-xl border border-gray-700 bg-gray-900/80 backdrop-blur-sm">
           <CardContent className="p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Error</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{error}</p>
+            <h2 className="text-2xl font-bold mb-4 text-white">Error</h2>
+            <p className="text-gray-300 mb-6 leading-relaxed">{error}</p>
             <Link to="/">
-              <Button className="bg-blue-600 hover:bg-blue-700 dark:bg-ai-electric dark:hover:bg-ai-electric/80 text-white font-medium px-6 py-2">Return Home</Button>
+              <Button className="bg-ai-electric hover:bg-ai-electric/80 text-white font-medium px-6 py-2">Return Home</Button>
             </Link>
           </CardContent>
         </Card>
@@ -123,7 +123,7 @@ const Documentation: React.FC = () => {
   const navigation = getPageNavigation(config, sectionId, pageId);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue">
+    <div className="min-h-screen bg-gradient-to-br from-ai-blue via-gray-900 to-ai-blue dark:from-ai-blue dark:via-gray-900 dark:to-ai-blue light:bg-gradient-to-br light:from-gray-50 light:via-white light:to-gray-100">
       {/* Mobile Header */}
       <DocumentationHeader 
         config={config}
@@ -133,7 +133,7 @@ const Documentation: React.FC = () => {
 
       <div className="flex">
         {/* Desktop Sidebar */}
-        <div className="hidden lg:block w-80 border-r border-gray-200 dark:border-gray-700/50 bg-white/80 dark:bg-gray-900/30 backdrop-blur-md">
+        <div className="hidden lg:block w-80 border-r border-gray-700/50 dark:border-gray-700/50 light:border-gray-200 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/80 backdrop-blur-md">
           <div className="sticky top-0 h-screen">
             <Sidebar
               config={config}
@@ -149,29 +149,29 @@ const Documentation: React.FC = () => {
             <div className="p-6 lg:p-8">
               {/* Breadcrumbs */}
               {pageInfo && (
-                <div className="mb-8 p-4 bg-white/60 dark:bg-gray-900/30 backdrop-blur-sm rounded-lg border border-gray-200 dark:border-gray-700/50">
+                <div className="mb-8 p-4 bg-gray-900/30 dark:bg-gray-900/30 light:bg-white/60 backdrop-blur-sm rounded-lg border border-gray-700/50 dark:border-gray-700/50 light:border-gray-200">
                   <Breadcrumb>
                     <BreadcrumbList>
                       <BreadcrumbItem>
-                        <BreadcrumbLink href="/" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-ai-electric transition-colors">
+                        <BreadcrumbLink href="/" className="text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-ai-electric transition-colors">
                           Home
                         </BreadcrumbLink>
                       </BreadcrumbItem>
-                      <BreadcrumbSeparator className="text-gray-400 dark:text-gray-600" />
+                      <BreadcrumbSeparator className="text-gray-600 dark:text-gray-600 light:text-gray-400" />
                       <BreadcrumbItem>
-                        <BreadcrumbLink href="/docs" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-ai-electric transition-colors">
+                        <BreadcrumbLink href="/docs" className="text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-ai-electric transition-colors">
                           Documentation
                         </BreadcrumbLink>
                       </BreadcrumbItem>
-                      <BreadcrumbSeparator className="text-gray-400 dark:text-gray-600" />
+                      <BreadcrumbSeparator className="text-gray-600 dark:text-gray-600 light:text-gray-400" />
                       <BreadcrumbItem>
-                        <BreadcrumbPage className="text-blue-600 dark:text-ai-electric font-medium">
+                        <BreadcrumbPage className="text-ai-electric font-medium">
                           {pageInfo.section.title}
                         </BreadcrumbPage>
                       </BreadcrumbItem>
-                      <BreadcrumbSeparator className="text-gray-400 dark:text-gray-600" />
+                      <BreadcrumbSeparator className="text-gray-600 dark:text-gray-600 light:text-gray-400" />
                       <BreadcrumbItem>
-                        <BreadcrumbPage className="text-gray-900 dark:text-white font-medium">
+                        <BreadcrumbPage className="text-white dark:text-white light:text-gray-900 font-medium">
                           {pageInfo.page.title}
                         </BreadcrumbPage>
                       </BreadcrumbItem>

@@ -4,37 +4,37 @@ import { Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const ThemeToggle: React.FC = () => {
-  const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('docs-theme');
-    if (saved) {
-      return saved === 'dark';
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
+    // Check if user has a saved preference
+    const savedTheme = localStorage.getItem('docs-theme');
+    if (savedTheme) {
+      const dark = savedTheme === 'dark';
+      setIsDark(dark);
+      updateTheme(dark);
+    } else {
+      // Default to dark theme
+      updateTheme(true);
+    }
+  }, []);
+
+  const updateTheme = (dark: boolean) => {
     const html = document.documentElement;
-    console.log('Applying theme:', isDark ? 'dark' : 'light');
-    console.log('HTML element before:', html.classList.toString());
-    console.log('HTML dataset before:', html.dataset);
-    
-    if (isDark) {
+    if (dark) {
       html.classList.add('dark');
-      html.setAttribute('data-theme', 'dark');
+      html.classList.remove('light');
     } else {
       html.classList.remove('dark');
-      html.setAttribute('data-theme', 'light');
+      html.classList.add('light');
     }
-    
-    console.log('HTML element after:', html.classList.toString());
-    console.log('HTML dataset after:', html.dataset);
-    
-    localStorage.setItem('docs-theme', isDark ? 'dark' : 'light');
-  }, [isDark]);
+  };
 
   const toggleTheme = () => {
-    console.log('Toggle clicked, current isDark:', isDark);
-    setIsDark(!isDark);
+    const newIsDark = !isDark;
+    setIsDark(newIsDark);
+    updateTheme(newIsDark);
+    localStorage.setItem('docs-theme', newIsDark ? 'dark' : 'light');
   };
 
   return (
@@ -42,7 +42,7 @@ const ThemeToggle: React.FC = () => {
       variant="ghost"
       size="sm"
       onClick={toggleTheme}
-      className="h-9 w-9 p-0 text-gray-400 hover:text-white dark:text-gray-400 dark:hover:text-white hover:bg-gray-800 dark:hover:bg-gray-800"
+      className="h-9 w-9 p-0 text-gray-400 hover:text-white dark:hover:text-white light:hover:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-800 light:hover:bg-gray-100"
       title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
       {isDark ? (
