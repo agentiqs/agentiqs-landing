@@ -24,7 +24,7 @@ const DocumentationSidebar: React.FC<DocumentationSidebarProps> = ({ config, toc
               <div className="space-y-4">
                 <div>
                   <h4 className="font-semibold text-sm text-white dark:text-white light:text-gray-900 mb-2">Search</h4>
-                  <DocSearch />
+                  <DocSearch config={config} />
                 </div>
               </div>
             </div>
