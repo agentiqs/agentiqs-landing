@@ -57,7 +57,7 @@ const Hero = () => {
               variant="outline" 
               size="lg"
               className="border-ai-electric text-ai-electric hover:bg-ai-electric hover:text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-3000"
-              onClick={() => window.open('https://github.com/agentiqs/mcp-kit-python/tree/main/docs', '_blank')}
+              onClick={() => window.location.href = '/docs'}
             >
               <Code2 className="mr-2 h-5 w-5" />
               Documentation
