@@ -1,0 +1,2 @@
+/docs/* https://agentiqs-docs.netlify.app/docs/:splat 200
+/blog/* https://agentiqs-docs.netlify.app/blog/:splat 200
