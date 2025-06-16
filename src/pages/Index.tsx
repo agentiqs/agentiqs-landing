@@ -6,11 +6,14 @@ import Examples from "@/components/Examples";
 import Pricing from "@/components/Pricing";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
+import { useLandingNavigation } from "@/hooks/useLandingNavigation";
 
 const Index = () => {
+  const navigationConfig = useLandingNavigation();
+
   return (
     <div className="min-h-screen">
-      <Navigation />
+      <Navigation config={navigationConfig} />
       <div id="home">
         <Hero />
       </div>
