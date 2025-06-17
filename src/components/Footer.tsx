@@ -1,4 +1,4 @@
-import { Github, Twitter, Linkedin, Mail, MessageSquare } from "lucide-react";
+import { Github, Twitter, Linkedin, Mail, Hash } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -21,7 +21,7 @@ const Footer = () => {
                 <Linkedin className="h-6 w-6" />
               </a>
               <a href="https://discord.gg/DuD2qD2Vbz" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
-                <MessageSquare className="h-6 w-6" />
+                <Hash className="h-6 w-6" />
               </a>
               <a href="mailto:sales@agentiqs.ai" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
                 <Mail className="h-6 w-6" />
