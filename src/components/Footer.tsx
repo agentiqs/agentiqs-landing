@@ -17,6 +17,9 @@ const Footer = () => {
               <a href="https://github.com/agentiqs" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
                 <Github className="h-6 w-6" />
               </a>
+              <a href="https://www.linkedin.com/company/agentiqs-ai/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
+                <Linkedin className="h-6 w-6" />
+              </a>
               <a href="mailto:sales@agentiqs.ai" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-ai-electric transition-colors duration-300">
                 <Mail className="h-6 w-6" />
               </a>
