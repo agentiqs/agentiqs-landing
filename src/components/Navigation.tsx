@@ -116,12 +116,11 @@ const Navigation = ({ config }: NavigationProps) => {
 
           {/* Bottom Row: Navigation Tabs */}
           {tabs.length > 0 && (
-            <div className="w-full">
+            <div className="w-full flex justify-center">
               <Tabs value={activeTab} className="w-full">
-                <div className="overflow-x-auto scrollbar-hide">
+                <div className="overflow-x-auto scrollbar-hide flex justify-center">
                   <TabsList 
-                    className="grid bg-gray-900/50 border border-gray-700 w-full min-w-max"
-                    style={{ gridTemplateColumns: `repeat(${tabs.length}, minmax(0, 1fr))` }}
+                    className="inline-flex bg-gray-900/50 border border-gray-700 rounded-md h-10 p-1"
                   >
                     {tabs.map((tab) => (
                       <TabsTrigger 
@@ -131,7 +130,7 @@ const Navigation = ({ config }: NavigationProps) => {
                           tab.onClick();
                           onTabChange?.(tab.id);
                         }}
-                        className="text-sm font-medium data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300 hover:text-white transition-colors whitespace-nowrap px-3 py-2"
+                        className="text-sm font-medium data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300 hover:text-white transition-colors whitespace-nowrap px-3 py-1.5 rounded-sm"
                       >
                         {tab.label}
                       </TabsTrigger>
