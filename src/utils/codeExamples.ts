@@ -1,20 +1,23 @@
 
 // Import the raw text content of Python files
-import basicSetupCode from '../examples/basic_setup.py?raw';
-import advancedMockingCode from '../examples/advanced_mocking.py?raw';
-import testingFrameworkCode from '../examples/testing_framework.py?raw';
+import basicSetupCode from "../examples/basic_setup.py?raw";
+import basicSetupConfig from "../examples/basic_config.yaml?raw";
+import basicSetupEnv from "../examples/basic_env.env?raw";
 
 export const codeExamples = {
-  basic: {
-    title: "basic_setup.py",
-    code: basicSetupCode
+  main: {
+    title: "main.py",
+    code: basicSetupCode,
+    language: "python",
   },
-  advanced: {
-    title: "advanced_mocking.py", 
-    code: advancedMockingCode
+  config: {
+    title: "proxy_config.yaml",
+    code: basicSetupConfig,
+    language: "yaml",
   },
-  testing: {
-    title: "testing_framework.py",
-    code: testingFrameworkCode
-  }
+  env: {
+    title: ".env",
+    code: basicSetupEnv,
+    language: "bash",
+  },
 };

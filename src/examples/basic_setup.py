@@ -1,16 +1,18 @@
+from mcp_kit import ProxyMCP
 
-from agentiqs import MCPMock, RESTMock
 
-# Mock MCP server
-mcp = MCPMock()
-mcp.add_tool("weather", returns={"temp": 22})
+async def main():
+    # Create proxy from configuration
+    proxy = ProxyMCP.from_config("proxy_config.yaml")
 
-# Mock REST API
-api = RESTMock()
-api.get("/users/1", returns={"id": 1, "name": "Alice"})
+    # Use with MCP client session adapter
+    async with proxy.client_session_adapter() as session:
+        tools = await session.list_tools()
+        result = await session.call_tool("getPetById", {"petId": "777"})
+        print(result.content[0].text)
 
-# Test your AI agent
-agent = MyAgent(mcp_server=mcp, api_client=api)
-result = agent.process("What's the weather?")
 
-assert "22" in result.response
+if __name__ == "__main__":
+    import asyncio
+
+    asyncio.run(main())
