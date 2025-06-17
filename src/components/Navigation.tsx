@@ -36,28 +36,23 @@ const Navigation = ({ config }: NavigationProps) => {
 
           {/* Navigation Tabs */}
           {tabs.length > 0 && (
-            <div className="flex-1 min-w-0 mx-4">
-              <Tabs value={activeTab} className="w-full">
-                <div className="overflow-x-auto scrollbar-hide">
-                  <TabsList 
-                    className="grid bg-gray-900/50 border border-gray-700 min-w-max"
-                    style={{ gridTemplateColumns: `repeat(${tabs.length}, minmax(0, 1fr))` }}
-                  >
-                    {tabs.map((tab) => (
-                      <TabsTrigger 
-                        key={tab.id}
-                        value={tab.id}
-                        onClick={() => {
-                          tab.onClick();
-                          onTabChange?.(tab.id);
-                        }}
-                        className="text-sm font-medium data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300 hover:text-white transition-colors whitespace-nowrap px-3 py-2"
-                      >
-                        {tab.label}
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
-                </div>
+            <div className="flex-1 min-w-0 mx-4 flex justify-center">
+              <Tabs value={activeTab} className="w-auto">
+                <TabsList className="inline-flex bg-gray-900/50 border border-gray-700 rounded-md h-10 p-1">
+                  {tabs.map((tab) => (
+                    <TabsTrigger 
+                      key={tab.id}
+                      value={tab.id}
+                      onClick={() => {
+                        tab.onClick();
+                        onTabChange?.(tab.id);
+                      }}
+                      className="text-sm font-medium data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300 hover:text-white transition-colors whitespace-nowrap px-3 py-1.5 rounded-sm"
+                    >
+                      {tab.label}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
               </Tabs>
             </div>
           )}
