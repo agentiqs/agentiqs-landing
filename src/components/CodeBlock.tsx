@@ -4,6 +4,8 @@ import { Copy, Check } from 'lucide-react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-dark.css';
 import 'prismjs/components/prism-python';
+import "prismjs/components/prism-yaml";
+import "prismjs/components/prism-bash";
 
 interface CodeBlockProps {
   code: string;
