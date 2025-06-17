@@ -1,4 +1,5 @@
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -101,13 +102,14 @@
   body {
     @apply bg-background text-foreground;
     /* Add top padding to account for fixed navigation */
-    padding-top: 88px; /* Desktop navigation height */
+    padding-top: 72px; /* Desktop navigation height */
   }
 
   /* Mobile responsive padding */
   @media (max-width: 640px) {
     body {
-      padding-top: 124px; /* Mobile navigation height (with two rows) */
+      padding-top: 96px; /* Mobile navigation height (with two rows) */
     }
   }
 }
+
