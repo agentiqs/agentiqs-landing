@@ -59,12 +59,12 @@ export const useLandingNavigation = (): NavigationConfig => {
     ],
     externalLinks: [
       {
-        href: "/docs",
+        href: "https://docs.agentiqs.ai",
         label: "Docs",
         external: true
       },
       {
-        href: "/blog",
+        href: "https://docs.agentiqs.ai/blog",
         label: "Blog",
         external: true
       }

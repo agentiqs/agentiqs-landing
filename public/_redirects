@@ -1,5 +1,2 @@
-/docs/*             https://agentiqs-docs.netlify.app/docs/:splat       200
-/blog/*             https://agentiqs-docs.netlify.app/blog/:splat       200
-/img/*              https://agentiqs-docs.netlify.app/img/:splat        200
-/assets/*           https://agentiqs-docs.netlify.app/assets/:splat     200
-docs-sitemap.xml    https://agentiqs-docs.netlify.app/sitemap.xml       200
+/docs               https://docs.agentiqs.ai                301
+/blog               https://docs.agentiqs.ai/blog           301
