@@ -49,7 +49,7 @@ const CodeBlock = ({ code, language = 'python', filename }: CodeBlockProps) => {
             <Copy className="h-4 w-4 text-white" />
           )}
         </button>
-        <pre className="!p-4 !m-0 overflow-x-auto !border-0 rounded-md" style={{ backgroundColor: '#1e1e1e' }}>
+        <pre className="!p-4 !m-0 !border-0 rounded-md h-[480px] overflow-auto" style={{ backgroundColor: '#1e1e1e' }}>
           <code className={`language-${language} text-sm leading-relaxed`} style={{ backgroundColor: '#1e1e1e' }}>
             {code}
           </code>
