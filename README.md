@@ -7,12 +7,6 @@ This is the landing page for [agentiqs.ai](https://agentiqs.ai), configured with
 Requirements: Node.js & npm (or bun) - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
 ```sh
-# Clone the repository
-git clone <YOUR_GIT_URL>
-
-# Navigate to the project directory
-cd agentiqs-landing
-
 # Install dependencies
 npm install
 # or
@@ -54,12 +48,6 @@ The `public/_redirects` file configures URL redirects for the site when deployed
 This repository is connected to Lovable, which creates content changes on the `lovable` branch. To integrate these changes into the main branch:
 
 ```sh
-# Clone the repository
-git clone <YOUR_GIT_URL>
-
-# Navigate to the project directory
-cd agentiqs-landing
-
 # Checkout main branch
 git checkout main
 
