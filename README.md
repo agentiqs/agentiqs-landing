@@ -1,58 +1,33 @@
-# Welcome to your Lovable project
+# agentiqs.ai landing site
 
-## Project info
+This is the landing page for [agentiqs.ai](https://agentiqs.ai), configured with CI in Netlify.
 
-**URL**: https://lovable.dev/projects/0e6bae8d-4706-47c8-992c-e99b6774d0fd
+## Development
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/0e6bae8d-4706-47c8-992c-e99b6774d0fd) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requirements: Node.js & npm (or bun) - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Install dependencies
+npm install
+# or
+bun install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
+# or
+bun run dev
 ```
 
-**Edit a file directly in GitHub**
+## Build
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+# Build for production
+npm run build
+# or
+bun run build
+```
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
+## Technologies
 
 - Vite
 - TypeScript
@@ -60,14 +35,34 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/0e6bae8d-4706-47c8-992c-e99b6774d0fd) and click on Share -> Publish.
+This site is deployed on Netlify and served at [https://agentiqs.ai](https://agentiqs.ai) from the `main` branch. Any commit pushed to the `main` branch will automatically trigger a redeploy.
 
-## Can I connect a custom domain to my Lovable project?
+## Redirects
 
-Yes, you can!
+The `public/_redirects` file configures URL redirects for the site when deployed on Netlify. This file handles routing for paths that should redirect to external URLs, for example we want `https://agentiqs.ai/docs` to redirect to `https://docs.agentiqs.ai`.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Lovable Integration
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This repository is connected to Lovable, which creates content changes on the `lovable` branch. To integrate these changes into the main branch:
+
+```sh
+# Checkout main branch
+git checkout main
+
+# Merge lovable branch
+git merge lovable
+
+# Review changes and remove any Lovable badges if present
+# Check for and remove any "Made with Lovable" badges or similar branding
+
+# Commit the merged changes
+git add .
+git commit -m "Integrate Lovable changes"
+
+# Push to main
+git push origin main
+```
+
+**Important**: Always review the changes before committing, especially to remove any Lovable branding or badges that may have been added.
