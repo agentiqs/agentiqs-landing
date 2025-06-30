@@ -4,6 +4,7 @@ import Features from "@/components/Features";
 import Benefits from "@/components/Benefits";
 import Examples from "@/components/Examples";
 import Pricing from "@/components/Pricing";
+import About from "@/components/About";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import { useLandingNavigation } from "@/hooks/useLandingNavigation";
@@ -23,6 +24,9 @@ const Index = () => {
       <Examples />
       <Benefits />
       <Pricing />
+      <div id="about">
+        <About />
+      </div>
       <Footer />
     </div>
   );

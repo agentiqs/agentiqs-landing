@@ -14,7 +14,7 @@ export const useLandingNavigation = (): NavigationConfig => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'features', 'examples', 'pricing'];
+      const sections = ['home', 'features', 'examples', 'pricing', 'about'];
       const scrollPosition = window.scrollY + 100; // Offset for better UX
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -55,6 +55,11 @@ export const useLandingNavigation = (): NavigationConfig => {
         id: "pricing",
         label: "Pricing",
         onClick: () => scrollToSection('pricing')
+      },
+      {
+        id: "about",
+        label: "About",
+        onClick: () => scrollToSection('about')
       }
     ],
     externalLinks: [
